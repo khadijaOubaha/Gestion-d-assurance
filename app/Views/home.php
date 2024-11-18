@@ -9,8 +9,8 @@
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="<?= base_url('assets/img/favicon.png') ?>" rel="icon">
-  <link href="<?= base_url('assets/img/apple-touch-icon.png') ?>" rel="apple-touch-icon">
+  <link href="<?= base_url('assets/img/family.jpg') ?>" rel="icon">
+  <link href="<?= base_url('assets/img/familyy.jpg') ?>" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -59,7 +59,7 @@
 
   <main class="main">
     <section id="hero" class="hero section light-background">
-      <img src="<?= base_url('assets/img/hero-bg.jpg') ?>" alt="" data-aos="fade-in">
+      <img src="<?= base_url('assets/img/familyy.jpg') ?>" alt="" data-aos="fade-in">
       <div class="container position-relative">
         <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
           <h2>WELCOME TO MEDILAB</h2>
