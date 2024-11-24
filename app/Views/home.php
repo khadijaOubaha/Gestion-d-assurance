@@ -63,6 +63,11 @@
       <div class="container position-relative">
         <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
           <h2>WELCOME TO MEDILAB</h2>
+          <?php if (session()->get('loggedIn')): ?>  
+    <h1>Bienvenue, <?= esc(session()->get('clientName')) ?>!</h1>  
+<?php else: ?>  
+    <h1>Bienvenue sur notre site !</h1>  
+<?php endif; ?>
           <p>We are a team of talented designers making websites with Bootstrap</p>
         </div>
         <div class="content row gy-4">

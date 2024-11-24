@@ -54,34 +54,54 @@ class ClientController extends BaseController
 
         return 'La table clients a été remplie avec succès.';
     }
-    public function validateLogin()
-    {
-        $session = session();
-        $model = new ClientModel();
+    protected $clientModel;  
 
-        $email = $this->request->getPost('email');
-        $password = $this->request->getPost('password');
+    public function __construct()  
+    {  
+        $this->clientModel = new ClientModel();  
+    }  
+    public function validateLogin()  
+    {  
+        // Récupération des données du formulaire  
+        $data = $this->request->getPost();  
 
-        $user = $model->where('email', $email)->first();
+        // Validation des données  
+        $validationRules = [  
+            'email' => 'required|valid_email',  
+            'password' => 'required',  
+        ];  
 
-        if ($user && password_verify($password, $user['password'])) {
-            $session->set([
-                'id' => $user['id'],
-                'nom' => $user['nom'],
-                'prenom' => $user['prenom'],
-                'isLoggedIn' => true,
-            ]);
-            return redirect()->to('/dashboard');
-        } else {
-            $session->setFlashdata('error', 'Invalid login credentials.');
-            return redirect()->back();
-        }
-    }
+        if (!$this->validate($validationRules)) {  
+            return view('login_client', [  
+                'errors' => $this->validator->getErrors(),  
+                'data' => $data  
+            ]);  
+        }  
+
+        // Authentification de l'utilisateur  
+        $client = $this->clientModel->where('email', $data['email'])->first();  
+
+        if (!$client || !password_verify($data['password'], $client['password'])) {  
+            return view('login_client', [  
+                'errors' => ['auth' => 'Email ou mot de passe incorrect.'],  
+                'data' => $data  
+            ]);  
+        }  
+
+        // Si l'identification réussit, démarre une session  
+        session()->set('loggedIn', true);  
+        session()->set('clientId', $client['id']);  
+        session()->set('clientName', $client['nom']); // Suppose que 'nom' est le champ pour le nom du client  
+
+        // Redirection vers la page d'accueil ou une autre page  
+        return redirect()->to('/');  
+    }  
+   
 
     public function logout()
     {
         $session = session();
         $session->destroy(); // Détruit la session
-        return redirect()->to('/login'); // Retourne à la page de connexion
+        return redirect()->to('/login_client'); // Retourne à la page de connexion
     }
 }
