@@ -10,32 +10,28 @@ class CreateAnnoncesTable extends Migration
         // Create annonces table
         $this->forge->addField([
             'annonceId' => [
-                'type' => 'INT',
-                'unsigned' => true,
+                'type'           => 'INT',
+                'unsigned'       => true,
                 'auto_increment' => true,
             ],
             'titre' => [
-                'type' => 'VARCHAR',
+                'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
             'description' => [
                 'type' => 'TEXT',
             ],
             'datePublication' => [
-                'type' => 'DATETIME',
-                'default' => 'CURRENT_TIMESTAMP',
+                   'type' => 'DATE',
+                'null' => true,
             ],
             'adminId' => [
-                'type' => 'INT',
+                'type'     => 'INT',
                 'unsigned' => true,
             ],
         ]);
         $this->forge->addKey('annonceId', true);
-        
-        // Ensure the tables are using InnoDB
-        $this->forge->addForeignKey('adminId', 'admins', 'adminId', 'CASCADE', 'CASCADE');
-        
-        // Create table with InnoDB engine
+        $this->forge->addForeignKey('adminId', 'admins', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('annonces', true, ['engine' => 'InnoDB']);
     }
 

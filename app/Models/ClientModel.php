@@ -25,7 +25,9 @@ class ClientModel extends Model
         'date_obtention_permis',   
         'id_voiture'  
     ];  
-
+    protected $useTimestamps = true;
+    protected $createdField  = 'created_at';
+    protected $updatedField = 'updated_at';
     protected $validationRules = [  
         'nom' => 'required|max_length[100]',                              // Le nom est requis et ne peut pas dépasser 100 caractères  
         'prenom' => 'required|max_length[100]',                           // Le prénom est requis et ne peut pas dépasser 100 caractères  
