@@ -55,11 +55,11 @@
 </head>
 <body>
     <div class="container mt-3">
-        <!-- Barre de progression -->
+        <!-- Progress Bar -->
         <div class="progress-container">
             <div class="progress-step active">
                 <div class="circle">1</div>
-                <p>Informations</p>
+                <p>Client Info</p>
             </div>
             <div class="progress-bar"></div>
             <div class="progress-step">
@@ -69,57 +69,60 @@
             <div class="progress-bar"></div>
             <div class="progress-step">
                 <div class="circle">3</div>
-                <p>Final</p>
+                <p>Car Info</p>
+            </div>
+            <div class="progress-bar"></div>
+            <div class="progress-step">
+                <div class="circle">4</div>
+                <p>Car Details</p>
             </div>
         </div>
 
-        <?php if (session()->getFlashdata('success')): ?>
-            <script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Succès',
-                    text: '<?= session()->getFlashdata('success') ?>',
-                    confirmButtonColor: '#1977cc'
-                });
-            </script>
-        <?php endif; ?>
-
-        <?php if (session()->getFlashdata('error')): ?>
-            <script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erreur',
-                    text: '<?= session()->getFlashdata('error') ?>',
-                    confirmButtonColor: '#1977cc'
-                });
-            </script>
-        <?php endif; ?>
-
-        <form id="multiStepForm" action="<?= base_url('/admin/saveUser') ?>" method="post">
+        <form id="multiStepForm" action="<?= base_url('/admin/saveUserWithCar') ?>" method="post">
             <?= csrf_field() ?>
 
-            <!-- Étape 1 -->
-            <div class="step active">
-                <div class="mb-3">
-                    <label for="nom" class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="nom" name="nom" required>
-                </div>
-                <div class="mb-3">
-                    <label for="prenom" class="form-label">Prénom</label>
-                    <input type="text" class="form-control" id="prenom" name="prenom" required>
-                </div>
-                <div class="mb-3">
-                    <label for="adresse" class="form-label">Adresse</label>
-                    <input type="text" class="form-control" id="adresse" name="adresse" required>
-                </div>
-                <div class="mb-3">
-                    <label for="ville" class="form-label">Ville</label>
-                    <input type="text" class="form-control" id="ville" name="ville" required>
-                </div>
-                <button type="button" class="btn btn-primary next-step">Suivant</button>
-            </div>
+          
+<!-- Step 1: Basic Information -->
+<div class="step active">
+    <div class="mb-3">
+        <label for="nom" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="nom" name="nom" required>
+    </div>
+    <div class="mb-3">
+        <label for="prenom" class="form-label">Prénom</label>
+        <input type="text" class="form-control" id="prenom" name="prenom" required>
+    </div>
+    <div class="mb-3">
+        <label for="adresse" class="form-label">Adresse</label>
+        <input type="text" class="form-control" id="adresse" name="adresse" required>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Mot de Passe</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <div class="mb-3">
+        <label for="ville" class="form-label">Ville</label>
+        <input type="text" class="form-control" id="ville" name="ville" required>
+    </div>
+    <div class="mb-3">
+        <label for="cin" class="form-label">CIN</label>
+        <input type="text" class="form-control" id="cin" name="cin" required>
+    </div>
+    <div class="mb-3">
+        <label for="date_naissance" class="form-label">Date de Naissance</label>
+        <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
+    </div>
+    <div class="mb-3">
+        <label for="date_obtention_permis" class="form-label">Date d'Obtention du Permis</label>
+        <input type="date" class="form-control" id="date_obtention_permis" name="date_obtention_permis" required>
+    </div>
+    
+    <button type="button" class="btn btn-primary next-step">Suivant</button>
+</div>
 
-            <!-- Étape 2 -->
+
+
+            <!-- Step 2: Contact Information -->
             <div class="step">
                 <div class="mb-3">
                     <label for="telephone" class="form-label">Téléphone</label>
@@ -129,31 +132,55 @@
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
                 <button type="button" class="btn btn-secondary prev-step">Précédent</button>
                 <button type="button" class="btn btn-primary next-step">Suivant</button>
             </div>
 
-            <!-- Étape 3 -->
-            <div class="step">
-                <div class="mb-3">
-                    <label for="cin" class="form-label">CIN</label>
-                    <input type="text" class="form-control" id="cin" name="cin" required>
-                </div>
-                <div class="mb-3">
-                    <label for="date_naissance" class="form-label">Date de Naissance</label>
-                    <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
-                </div>
-                <div class="mb-3">
-                    <label for="date_obtention_permis" class="form-label">Date d'Obtention du Permis</label>
-                    <input type="date" class="form-control" id="date_obtention_permis" name="date_obtention_permis" required>
-                </div>
-                <button type="button" class="btn btn-secondary prev-step">Précédent</button>
-                <button type="submit" class="btn btn-success">Enregistrer</button>
-            </div>
+            <!-- Étape 3 : Informations sur la voiture -->
+<div class="step">
+    <div class="mb-3">
+        <label for="marque" class="form-label">Marque</label>
+        <input type="text" class="form-control" id="marque" name="marque" required>
+    </div>
+    <div class="mb-3">
+        <label for="modele" class="form-label">Modèle</label>
+        <input type="text" class="form-control" id="modele" name="modele" required>
+    </div>
+    <div class="mb-3">
+        <label for="immatriculation" class="form-label">Immatriculation</label>
+        <input type="text" class="form-control" id="immatriculation" name="immatriculation" required>
+    </div>
+    <button type="button" class="btn btn-secondary prev-step">Précédent</button>
+    <button type="button" class="btn btn-primary next-step">Suivant</button>
+</div>
+
+<!-- Étape 4 : Autres détails -->
+<div class="step">
+    <div class="mb-3">
+        <label for="puissance_fiscale" class="form-label">Puissance Fiscale</label>
+        <input type="number" class="form-control" id="puissance_fiscale" name="puissance_fiscale" required>
+    </div>
+    <div class="mb-3">
+        <label for="carburant" class="form-label">Carburant</label>
+        <select class="form-control" id="carburant" name="carburant" required>
+            <option value="Essence">Essence</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Electrique">Électrique</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="annee_fabrication" class="form-label">Année de Fabrication</label>
+        <input type="number" class="form-control" id="annee_fabrication" name="annee_fabrication" required>
+    </div>
+    
+    <div class="mb-3">
+        <label for="kilometrage" class="form-label">kilometrage</label>
+        <input type="number" class="form-control" id="kilometrage" name="kilometrage" required>
+    </div>
+    <button type="button" class="btn btn-secondary prev-step">Précédent</button>
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+</div>
+
         </form>
     </div>
 

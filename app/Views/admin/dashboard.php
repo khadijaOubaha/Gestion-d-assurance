@@ -140,9 +140,7 @@
 </li>
 
 
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-envelope"></i></a>
-            </li>
+           
             <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
         <span><?= session()->get('prenom') . ' ' . session()->get('nom'); ?></span>
@@ -171,9 +169,11 @@
             <a href="<?= base_url('/admin/dashboard?view=users_table') ?>" class="dropdown-item">Tableau des Utilisateurs</a>
         </div>
     </div>
-    <a href="#"><i class="fas fa-chart-line me-2"></i>Reports</a>
-    <a href="#"><i class="fas fa-cogs me-2"></i>Settings</a>
+    <a href="<?= base_url('/admin/notifications') ?>"><i class="fas fa-calendar-alt me-2"></i>
+    Les rendez_vous</a>
+    <a href=""><i class="fas fa-cogs me-2"></i>Settings</a>
 </div>
+
 
 <!-- Content -->
 <div class="content">

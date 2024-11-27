@@ -153,78 +153,109 @@ public function delete($id)
     session()->setFlashdata('success', 'Rendez-vous supprimé avec succès.');
     return redirect()->to('/client/rendezvous');
 }
+
 public function valider($id)
-    {
-        $rendezvousModel = new RendezvousModel();
-        $clientModel = new ClientModel();
-        $voitureModel = new VoitureModel();
+{
+    $rendezvousModel = new \App\Models\RendezvousModel();
+    $rendezvous = $rendezvousModel->getRendezvousWithDetails($id);
 
-        // Récupérer les informations du rendez-vous
-        $rendezvous = $rendezvousModel->find($id);
-
-        // Vérifier si le rendez-vous existe
-        if (!$rendezvous) {
-            return redirect()->back()->with('error', 'Rendez-vous introuvable.');
-        }
-
-        // Récupérer les informations du client et de la voiture
-        $client = $clientModel->find($rendezvous['id_client']);
-        $voiture = $voitureModel->find($rendezvous['id_voiture']);
-
-        // Mettre à jour le statut du rendez-vous et marquer la notification comme vue
+    // Vérifier si le rendez-vous existe
+    if ($rendezvous) {
+        // Mettre à jour le statut du rendez-vous
         $rendezvousModel->update($id, [
             'statut' => 'validé',
             'is_new' => 0
         ]);
 
-        // Générer le PDF avec les informations du client, voiture et rendez-vous
-        $this->generatePDF($client, $voiture, $rendezvous);
-
-        return redirect()->back()->with('success', 'Le rendez-vous a été validé et un PDF a été généré.');
-    }
-
-    private function generatePDF($client, $voiture, $rendezvous)
-    {
-        // Créer une instance de TCPDF
-        $pdf = new TCPDF();
-
-        // Ajouter une page
+        // Générer le PDF
+        $pdf = new \TCPDF();
         $pdf->AddPage();
 
-        // Définir le titre du document
-        $pdf->SetFont('helvetica', 'B', 16);
-        $pdf->Cell(0, 10, 'Rendez-vous Validé', 0, 1, 'C');
+        // Ajouter des informations au PDF (client, voiture, rendez-vous)
+        $pdf->Write(0, "Client : " . $rendezvous['client_nom'] . ' ' . $rendezvous['client_prenom']);
+        $pdf->Write(0, "Date : " . $rendezvous['date_rendez_vous']);
+        $pdf->Write(0, "Heure : " . $rendezvous['heure_rendez_vous']);
+        $pdf->Write(0, "Voiture : " . $rendezvous['voiture_marque'] . ' ' . $rendezvous['voiture_modele']);
 
-        // Définir la police pour le contenu
-        $pdf->SetFont('helvetica', '', 12);
+        // Définir le répertoire de destination (sans 'public/' supplémentaire)
+        // Vérifier si le répertoire existe, sinon le créer
+$pdfDir = ROOTPATH . 'public/pdfs/';
+if (!is_dir($pdfDir)) {
+    mkdir($pdfDir, 0755, true); // Créer le répertoire si nécessaire
+}
 
-        // Ajouter les informations du client
-        $pdf->Ln(10);
-        $pdf->Cell(0, 10, 'Informations du Client:', 0, 1);
-        $pdf->Cell(0, 10, 'Nom: ' . $client['nom'] . ' ' . $client['prenom'], 0, 1);
-        $pdf->Cell(0, 10, 'Email: ' . $client['email'], 0, 1);
-        $pdf->Cell(0, 10, 'Téléphone: ' . $client['telephone'], 0, 1);
-        $pdf->Cell(0, 10, 'Adresse: ' . $client['adresse'], 0, 1);
-        $pdf->Cell(0, 10, 'Ville: ' . $client['ville'], 0, 1);
+// Nom du fichier PDF
+$pdfFileName = 'rendezvous_' . $rendezvous['id'] . '.pdf';
 
-        // Ajouter les informations de la voiture
-        $pdf->Ln(10);
-        $pdf->Cell(0, 10, 'Informations de la Voiture:', 0, 1);
-        $pdf->Cell(0, 10, 'Marque: ' . $voiture['marque'], 0, 1);
-        $pdf->Cell(0, 10, 'Modèle: ' . $voiture['modele'], 0, 1);
-        $pdf->Cell(0, 10, 'Année de Fabrication: ' . $voiture['annee_fabrication'], 0, 1);
-        $pdf->Cell(0, 10, 'Numéro d\'Immatriculation: ' . $voiture['immatriculation'], 0, 1);
-        $pdf->Cell(0, 10, 'Carburant: ' . $voiture['carburant'], 0, 1);
+// Enregistrer le PDF sur le disque dans le dossier public/pdfs/
+$pdf->Output($pdfDir . $pdfFileName, 'F');
 
-        // Ajouter les informations du rendez-vous
-        $pdf->Ln(10);
-        $pdf->Cell(0, 10, 'Rendez-vous:', 0, 1);
-        $pdf->Cell(0, 10, 'Date: ' . $rendezvous['date_rendez_vous'], 0, 1);
-        $pdf->Cell(0, 10, 'Heure: ' . $rendezvous['heure_rendez_vous'], 0, 1);
 
-        // Sauvegarder le PDF dans un fichier
-        $pdf->Output('Rendezvous_' . $rendezvous['id'] . '.pdf', 'D'); // 'D' pour télécharger le fichier
+        // Retourner le chemin du PDF généré
+        return redirect()->back()->with('success', 'Le rendez-vous a été validé. <br> PDF généré pour ce rendez-vous : <a href="' . base_url('pdfs/' . $pdfFileName) . '" target="_blank">Voir le PDF</a>');
+    } else {
+        return redirect()->back()->with('error', 'Rendez-vous introuvable.');
     }
+}
+
+
+
+
+
+private function generatePDF($client, $voiture, $rendezvous)
+{
+    // Charger la bibliothèque TCPDF
+    $pdf = new TCPDF();
+
+    // Ajouter une page
+    $pdf->AddPage();
+
+    // Définir la police pour le titre
+    $pdf->SetFont('helvetica', 'B', 16);
+    $pdf->Cell(0, 10, 'Rendez-vous Validé', 0, 1, 'C');
+
+    // Définir la police pour le contenu
+    $pdf->SetFont('helvetica', '', 12);
+
+    // Ajouter les informations du client
+    $pdf->Ln(10);
+    $pdf->Cell(0, 10, 'Informations du Client:', 0, 1);
+    $pdf->Cell(0, 10, 'Nom: ' . $client['nom'] . ' ' . $client['prenom'], 0, 1);
+    $pdf->Cell(0, 10, 'Email: ' . $client['email'], 0, 1);
+    $pdf->Cell(0, 10, 'Téléphone: ' . $client['telephone'], 0, 1);
+    $pdf->Cell(0, 10, 'Adresse: ' . $client['adresse'], 0, 1);
+
+    // Ajouter les informations de la voiture
+    $pdf->Ln(10);
+    $pdf->Cell(0, 10, 'Informations de la Voiture:', 0, 1);
+    $pdf->Cell(0, 10, 'Marque: ' . $voiture['marque'], 0, 1);
+    $pdf->Cell(0, 10, 'Modèle: ' . $voiture['modele'], 0, 1);
+    $pdf->Cell(0, 10, 'Année de Fabrication: ' . $voiture['annee_fabrication'], 0, 1);
+    $pdf->Cell(0, 10, 'Immatriculation: ' . $voiture['immatriculation'], 0, 1);
+
+    // Ajouter les informations du rendez-vous
+    $pdf->Ln(10);
+    $pdf->Cell(0, 10, 'Informations du Rendez-vous:', 0, 1);
+    $pdf->Cell(0, 10, 'Date: ' . $rendezvous['date_rendez_vous'], 0, 1);
+    $pdf->Cell(0, 10, 'Heure: ' . $rendezvous['heure_rendez_vous'], 0, 1);
+
+    // Spécifier le répertoire de stockage du PDF
+    $uploadPath = WRITEPATH . 'uploads/pdfs/'; // Répertoire public ou writable
+
+    // Créer le répertoire s'il n'existe pas
+    if (!is_dir($uploadPath)) {
+        mkdir($uploadPath, 0777, true);
+    }
+
+    // Nom du fichier PDF (par exemple : 'Rendezvous_123.pdf')
+    $pdfFileName = 'Rendezvous_' . $rendezvous['id'] . '.pdf';
+
+    // Sauvegarder le fichier PDF sur le serveur
+    $pdf->Output($uploadPath . $pdfFileName, 'F'); // 'F' pour enregistrer le fichier
+
+    // Retourner le nom du fichier PDF pour un usage ultérieur
+    return $pdfFileName;
+}
 
 public function rejeter($id)
 {

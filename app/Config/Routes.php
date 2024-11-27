@@ -47,7 +47,8 @@ $routes->post('/admin/loginProcess', 'AdminController::loginProcess');
 $routes->get('/admin/dashboard', 'AdminController::dashboard');
 $routes->get('/admin/logout', 'AdminController::logout');
 $routes->get('/admin/addUser', 'AdminController::addUser');
-$routes->post('/admin/saveUser', 'AdminController::saveUser');
+$routes->post('/admin/saveUserWithCar', 'AdminController::saveUserWithCar');
+// $routes->post('/admin/saveUser', 'AdminController::saveUser');
 $routes->get('/admin/usersTable', 'AdminController::usersTable');
 $routes->get('/admin/editUser/(:num)', 'AdminController::editUser/$1'); // Route pour modifier
 $routes->get('/admin/deleteUser/(:num)', 'AdminController::deleteUser/$1'); // Route pour supprimer
@@ -68,3 +69,6 @@ $routes->get('admin/rendezvous/valider/(:num)', 'RendezvousController::valider/$
 $routes->get('admin/rendezvous/rejeter/(:num)', 'RendezvousController::rejeter/$1');
 $routes->get('admin/notifications/mark-seen/(:num)', 'RendezvousController::markSeen/$1');
 
+$routes->get('uploads/pdfs/(:any)', function($fileName) {
+    return redirect()->to(WRITEPATH . 'uploads/pdfs/' . $fileName);
+});

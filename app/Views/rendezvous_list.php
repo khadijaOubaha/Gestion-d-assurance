@@ -34,6 +34,9 @@
         .btn-warning {
             background-color: #ffc107;
         }
+        .btn-success {
+            background-color: #28a745;
+        }
     </style>
 </head>
 <body>
@@ -57,10 +60,13 @@
                         <td><?= esc($rendezvousItem['statut']) ?></td>
                         <td>
                             <?php if ($rendezvousItem['statut'] == 'en attente'): ?>
-                                <!-- <a href="/rendezvous/edit/<?= $rendezvousItem['id'] ?>" class="btn btn-warning">Éditer</a> -->
                                 <a href="/rendezvous/delete/<?= $rendezvousItem['id'] ?>" class="btn btn-danger">Supprimer</a>
+                            <?php elseif ($rendezvousItem['statut'] == 'validé'): ?>
+                                <!-- Lien de téléchargement du PDF -->
+                                <a href="<?= base_url('pdfs/rendezvous_' . $rendezvousItem['id'] . '.pdf') ?>" class="btn btn-success" target="_blank">Télécharger le PDF</a>
+
                             <?php else: ?>
-                                <!-- Pas de boutons si le statut n'est pas 'en attente' -->
+                                <!-- Pas d'action si le statut n'est ni 'en attente' ni 'validé' -->
                             <?php endif; ?>
                         </td>
                     </tr>

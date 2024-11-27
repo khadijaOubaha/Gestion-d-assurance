@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AdminModel;
 use App\Models\ClientModel;
+use App\Models\VoitureModel;
 use App\Models\RendezvousModel;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -106,29 +107,66 @@ public function addUser()
     ]);
 }
 
-public function saveUser()
+public function saveUserWithCar()
 {
-    $model = new ClientModel();
+    // Initialiser les modèles
+    $clientModel = new ClientModel();
+    $voitureModel = new VoitureModel();
 
-    $data = [
-        'nom'                   => $this->request->getPost('nom'),
-        'prenom'                => $this->request->getPost('prenom'),
-        'adresse'               => $this->request->getPost('adresse'),
-        'ville'                 => $this->request->getPost('ville'),
-        'telephone'             => $this->request->getPost('telephone'),
-        'email'                 => $this->request->getPost('email'),
-        'password'              => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
-        'cin'                   => $this->request->getPost('cin'),
-        'date_naissance'        => $this->request->getPost('date_naissance'),
+    // Récupérer les données du formulaire
+    $clientData = [
+        'nom' => $this->request->getPost('nom'),
+        'prenom' => $this->request->getPost('prenom'),
+        'adresse' => $this->request->getPost('adresse'),
+        'ville' => $this->request->getPost('ville'),
+        'telephone' => $this->request->getPost('telephone'),
+        'email' => $this->request->getPost('email'),
+        'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT), // Hash du mot de passe
+        'cin' => $this->request->getPost('cin'),
+        'date_naissance' => $this->request->getPost('date_naissance'),
         'date_obtention_permis' => $this->request->getPost('date_obtention_permis'),
     ];
 
-    if ($model->insert($data)) {
-        return redirect()->to('/admin/dashboard')->with('success', 'Utilisateur ajouté avec succès.');
+    // Récupérer les données de la voiture
+    $voitureData = [
+        'marque' => $this->request->getPost('marque'),
+        'modele' => $this->request->getPost('modele'),
+        'immatriculation' => $this->request->getPost('immatriculation'),
+        'puissance_fiscale' => $this->request->getPost('puissance_fiscale'),
+        'carburant' => $this->request->getPost('carburant'),
+        'annee_fabrication' => $this->request->getPost('annee_fabrication'),
+        'kilometrage' => $this->request->getPost('kilometrage'),
+    ];
+var_dump($clientData);
+    // Valider les données du client
+    $validation = \Config\Services::validation();
+    if (!$validation->run($clientData)) {
+        // Si la validation échoue, récupérer les erreurs
+        $errors = $validation->getErrors();
+        return redirect()->back()->with('error', 'Des erreurs de validation ont été détectées.')->withInput()->with('validationErrors', $errors);
     }
 
-    return redirect()->back()->with('error', 'Erreur lors de l\'ajout de l\'utilisateur.');
+    // Insérer la voiture et obtenir son ID
+    $voitureId = $voitureModel->insert($voitureData);
+    if ($voitureId) {
+        // Ajouter l'id de la voiture au client
+        $clientData['id_voiture'] = $voitureId;
+
+        // Insérer le client
+        $clientInsert = $clientModel->insert($clientData);
+        if (!$clientInsert) {
+            $errors = $clientModel->errors();
+            return redirect()->back()->with('error', 'Erreur lors de l\'ajout du client.')->withInput()->with('validationErrors', $errors);
+        } else {
+            // Message de succès
+            return redirect()->to('/admin/dashboard')->with('success', 'Client et voiture ajoutés avec succès');
+        }
+    } else {
+        // Si l'enregistrement de la voiture échoue
+        return redirect()->back()->with('error', 'Erreur lors de l\'ajout de la voiture.');
+    }
 }
+
 
 public function usersTable()
 {

@@ -46,5 +46,13 @@ public function updateStatus($id, $status)
 {
     return $this->update($id, ['statut' => $status]);
 }
+public function getRendezvousWithDetails($id)
+{
+    return $this->select('rendez_vous.*, clients.nom AS client_nom, clients.prenom AS client_prenom, voitures.marque AS voiture_marque, voitures.modele AS voiture_modele')
+                ->join('clients', 'rendez_vous.id_client = clients.id', 'left')  // Assurez-vous que 'clients.id' est correct
+                ->join('voitures', 'rendez_vous.id_voiture = voitures.id', 'left')  // Assurez-vous que 'voitures.id' est correct
+                ->where('rendez_vous.id', $id)
+                ->first();
+}
 
 }
