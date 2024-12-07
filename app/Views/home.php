@@ -25,12 +25,22 @@
   <link href="<?= base_url('assets/vendor/glightbox/css/glightbox.min.css') ?>" rel="stylesheet">
   <link href="<?= base_url('assets/vendor/swiper/swiper-bundle.min.css') ?>" rel="stylesheet">
 
-  <!-- Main CSS File -->
+
   <link href="<?= base_url('assets/css/main.css') ?>" rel="stylesheet">
 </head>
 
 <body class="index-page">
+<?php if (session()->getFlashdata('success')): ?>
+    <div class="alert alert-success mt-3">
+        <?= session()->getFlashdata('success') ?>
+    </div>
+<?php endif; ?>
 
+<?php if (session()->getFlashdata('error')): ?>
+    <div class="alert alert-danger mt-3">
+        <?= session()->getFlashdata('error') ?>
+    </div>
+<?php endif; ?>
 <header id="header" class="header sticky-top">
   <div class="branding d-flex align-items-center">
     <div class="container position-relative d-flex align-items-center justify-content-between">
@@ -47,17 +57,24 @@
            
             </ul>
           </li>
-          <!-- Affiche le lien Contact seulement si l'utilisateur est un client -->
+          
           <?php if ((session()->get('loggedIn') && session()->get('userRole') == 'client') || !session()->get('loggedIn')): ?>
             <li><a href="#contact">Contact</a></li>
           <?php endif; ?>
 
-          <!-- Affiche le lien Profil/Mon Compte si l'utilisateur est connecté -->
+          
           <?php if (session()->get('loggedIn') && session()->get('userRole') == 'client'): ?>
-            <li><a href="<?= base_url('rendezvous/create') ?>">Automobile</a></li>
-            <li><a href="<?= base_url('/client/rendezvous') ?>" >Mes rendez-vous</a></li>
+            
+            <li class="dropdown"><a href="#"><span>Auto</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+            <li><a href="<?= base_url('rendezvous/create') ?>">Prendre un rendez-vous</a></li>
+              <li><a href="<?= base_url('/client/rendezvous') ?>" >Mes rendez-vous</a></li>
+           
+            </ul>
+          </li>
+           
 
-            <li><a href="<?= base_url('profil') ?>">Mon Compte</a></li>
+            <li><a href="<?= base_url('/profil') ?>">Mon Compte</a></li>
             <li><a href="<?= base_url('logout') ?>">Se Déconnecter</a></li>
 
           <?php endif; ?>
@@ -65,9 +82,9 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
       <?php if (!session()->get('loggedIn')): ?>
-    <!-- Code à afficher si l'utilisateur n'est pas connecté -->
-    <a class="cta-btn d-none d-sm-block" href="login_client">Espace Client</a>
-    <a class="cta-btn d-none d-sm-block" href="admin/login">Espace Admin</a>
+   
+    <a class="cta-btn d-none d-sm-block" href="login_client">Mon Espace</a>
+    <!-- <a class="cta-btn d-none d-sm-block" href="admin/login">Interface d'administration</a> -->
 <?php endif; ?>
     
     </div>
@@ -80,7 +97,7 @@
       <img src="<?= base_url('assets/img/familyy.jpg') ?>" alt="" data-aos="fade-in">
       <div class="container position-relative">
         <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
-        <h2>Bienvenus sur AMANASS</h2>  
+        <h2>Bienvenue sur AMANASS</h2>  
 <?php if (session()->get('loggedIn')): ?>  
     <?php if (session()->get('userRole') === 'admin'): ?>  
         <h1>Bienvenue, Admin <?= esc(session()->get('userName')) ?>!</h1>  
@@ -134,7 +151,7 @@
       </div>
     </section>
 
-        <!-- About Section -->
+        
         <section id="about" class="about section">
 
 <div class="container">
@@ -153,27 +170,28 @@
       </p>
       <ul>
         <li>
-          <i class="fa-solid fa-vial-circle-check"></i>
-          <div>
-            <h5>Réservations simplifiées </h5>
-            <p>Notre application web permet aux clients de prendre facilement rendez-vous en ligne pour venir effectuer le paiement de leur assurance à l'agence. Cela élimine les longues attentes et garantit une gestion efficace de leur temps</p>
+        <i class="fa-solid fa-shield"></i>
+        <div>
+            <h5>Des solutions adaptées à vos besoins</h5>
+            <p>Nous proposons une large gamme de services d'assurance qui s'ajustent à votre style de vie et à vos objectifs.</p>
           </div>
         </li>
         <li>
-          <i class="fa-solid fa-pump-medical"></i>
-          <div>
-            <h5>Gestion complète des informations </h5>
-            <p>Les clients peuvent renseigner leurs informations personnelles, celles de leur véhicule ainsi que la date d’obtention de leur permis de conduire directement depuis notre plateforme. Ces données sont sécurisées et utilisées pour offrir un service rapide et personnalisé</p>
+        <i class="fa-solid fa-headset"></i>
+        <div>
+            <h5>Un service client réactif et fiable</h5>
+            <p>Notre équipe est disponible pour vous accompagner à chaque étape avec rapidité et efficacité.</p>
           </div>
         </li>
         <li>
-          <i class="fa-solid fa-heart-circle-xmark"></i>
-          <div>
-            <h5>Support administratif</h5>
-            <p>L'administrateur de l'agence dispose d'outils pour gérer les informations des clients, consulter et organiser les rendez-vous, avec la possibilité de les valider ou de les rejeter selon les disponibilités</p>
+        <i class="fa-solid fa-handshake"></i>
+        <div>
+            <h5>Une confiance bâtie sur la transparence</h5>
+            <p>Nous croyons en des relations durables fondées sur l'honnêteté et la transparence envers nos clients.</p>
           </div>
         </li>
-      </ul>
+</ul>
+
     </div>
 
   </div>
@@ -181,14 +199,13 @@
 </div>
 
 
-<!-- Services Section -->
 <section id="services" class="services section">
 
-<!-- Section Title -->
+
 <div class="container section-title" data-aos="fade-up">
   <h2>Services</h2>
-  <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
-</div><!-- End Section Title -->
+  
+</div>
 
 <div class="container">
 
@@ -197,26 +214,25 @@
     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
       <div class="service-item  position-relative">
         <div class="icon">
-          <i class="fas fa-heartbeat"></i>
+        <i class="fa-solid fa-shield"></i>
         </div>
         <a href="#" class="stretched-link">
           <h3>Réservation de rendez-vous </h3>
         </a>
         <p>Notre plateforme en ligne permet aux clients de réserver un rendez-vous pour effectuer leur paiement d’assurance directement en agence. Cela leur évite de perdre du temps dans des files d’attente</p>
       </div>
-    </div><!-- End Service Item -->
-
+    </div>
     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
       <div class="service-item position-relative">
         <div class="icon">
-          <i class="fas fa-pills"></i>
+        <i class="fa-solid fa-handshake"></i>
         </div>
         <a href="#" class="stretched-link">
           <h3>Gestion des informations</h3>
         </a>
         <p>Les clients peuvent facilement fournir leurs données personnelles, les informations sur leur véhicule (marque, puissance, carburant, etc.) ainsi que la date d’obtention de leur permis de conduire</p>
       </div>
-    </div><!-- End Service Item -->
+    </div>
 
     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
       <div class="service-item position-relative">
@@ -228,27 +244,25 @@
         </a>
         <p>Nous favorisons le contact humain en évitant les paiements en ligne. Cela permet aux clients de se rendre en agence pour bénéficier d’un service personnalisé et d’échanger directement avec nos agents</p>
       </div>
-    </div><!-- End Service Item -->
-
-   <!-- End Service Item -->
+    </div>
 
   </div>
 
 </div>
 
-</section><!-- /Services Section -->
+</section>
 
 
 
 
-<!-- Faq Section -->
+
 <section id="faq" class="faq section light-background">
 
-<!-- Section Title -->
+
 <div class="container section-title" data-aos="fade-up">
   <h2>questions fréquentes</h2>
   <p>Il est destiné à répondre à ses besoins, en fuyant quelque chose, il est en effet nécessaire qu'il soit conforme à ce qu'il veut</p>
-</div><!-- End Section Title -->
+</div>
 
 <div class="container">
 
@@ -265,7 +279,7 @@
             <p>Pour réserver un rendez-vous, rendez-vous sur notre plateforme en ligne. Complétez le formulaire de réservation avec vos informations personnelles et celles de votre véhicule, puis choisissez la date et l’heure qui vous conviennent. Puis accedez a votre espace client pour recevrez une confirmation .</p>
           </div>
           <i class="faq-toggle bi bi-chevron-right"></i>
-        </div><!-- End Faq item-->
+        </div>
 
         <div class="faq-item">
           <h3>Quels documents dois-je apporter lors du rendez-vous ?</h3>
@@ -278,7 +292,7 @@ Les documents relatifs à votre véhicule (carte grise, etc.).
 Toute autre information pertinente liée à votre assurance.</p>
           </div>
           <i class="faq-toggle bi bi-chevron-right"></i>
-        </div><!-- End Faq item-->
+        </div>
 
         <div class="faq-item">
           <h3>Est-ce que je peux payer mon assurance en ligne ?</h3>
@@ -286,28 +300,28 @@ Toute autre information pertinente liée à votre assurance.</p>
             <p>Actuellement, nous n’acceptons pas les paiements en ligne. Vous devez vous rendre en agence pour effectuer le paiement lors de votre rendez-vous.</p>
           </div>
           <i class="faq-toggle bi bi-chevron-right"></i>
-        </div><!-- End Faq item-->
+        </div>
 
       </div>
 
-    </div><!-- End Faq Column-->
+    </div>
 
   </div>
 
 </div>
 
-</section><!-- /Faq Section -->
+</section>
 
 
 
 
 <section id="contact" class="contact section">
 
-<!-- Section Title -->
+
 <div class="container section-title" data-aos="fade-up">
   <h2>Contact</h2>
   <p>Nous nous engageons à répondre rapidement à vos messages, par email .</p>
-</div><!-- End Section Title -->
+</div><
 
 <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -328,7 +342,7 @@ Toute autre information pertinente liée à votre assurance.</p>
           <h3>Tel </h3>
           <p>05 91730320</p>
         </div>
-      </div><!-- End Info Item -->
+      </div>
 
       <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
         <i class="bi bi-envelope flex-shrink-0"></i>
@@ -336,7 +350,7 @@ Toute autre information pertinente liée à votre assurance.</p>
           <h3>Email </h3>
           <p>assuraman61@gmail.com</p>
         </div>
-      </div><!-- End Info Item -->
+      </div>
 
     </div>
 
@@ -362,7 +376,7 @@ Toute autre information pertinente liée à votre assurance.</p>
 
           <div class="col-md-12 text-center">
             <div class="loading">Loading</div>
-            <div class="sent-message"></div>
+            <div class="error-message"></div>
             <div class="sent-message">votre message est envoyer. Merci!</div>
 
             <button type="submit">Envoyer message</button>
@@ -370,7 +384,7 @@ Toute autre information pertinente liée à votre assurance.</p>
 
         </div>
       </form>
-    </div><!-- End Contact Form -->
+    </div>
 
   </div>
 
@@ -391,14 +405,19 @@ Toute autre information pertinente liée à votre assurance.</p>
                     <p class="mt-3"><strong>Téléphone:</strong> <span>+212 5 91730320</span></p>
                     <p><strong>Email:</strong> <span>assuraman61@gmail.com</span></p>
                 </div>
+                <?php if (!session()->get('loggedIn')): ?>
+   
+   <!-- <a class="cta-btn d-none d-sm-block" href="login_client">Espace Client</a> -->
+   <a class="cta-btn d-none d-sm-block" href="admin/login">Interface d'administration</a>
+<?php endif; ?>
             </div>
 
             <div class="col-lg-2 col-md-3 footer-links">
                 <ul>
                     <li><a href="#">Accueil</a></li>
-                    <li><a href="#">Nous</a></li>
-                    <li><a href="#">Nos produits</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#about">Nous</a></li>
+                    <li><a href="/Auto/info">Nos produits</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
 
@@ -441,10 +460,10 @@ Toute autre information pertinente liée à votre assurance.</p>
 
 
 
-<!-- Scroll Top -->
+
 <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-<!-- Preloader -->
+
 <div id="preloader"></div>
 <script>
     // JavaScript pour la gestion des étoiles

@@ -43,37 +43,31 @@
 <body>
     <div class="container mt-3">
         <div class="row text-center">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card p-4">
                     <i class="fas fa-user text-primary"></i>
-                    <h5><?= $data['totalClients']; ?></h5>
+                    <h5><?= count($data['totalClients']); ?></h5>
                     <p>Clients</p>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card p-4">
                     <i class="fas fa-clock text-warning"></i>
-                    <h5>123.50</h5>
-                    <p>Average Time</p>
+                    <h5><?= count($data['rendezvous']); ?></h5>
+                    <p>Rendez-vous</p>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card p-4">
-                    <i class="fas fa-cloud text-info"></i>
-                    <h5>1805</h5>
-                    <p>Collections</p>
-                </div>
-            </div>
-            <div class="col-md-3">
+            
+            <div class="col-md-4">
                 <div class="card p-4">
                     <i class="fas fa-comments text-success"></i>
-                    <h5><?= count($data['feedbacks']); ?></h5> <!-- Affichage du nombre total de feedbacks -->
+                    <h5><?= count($data['feedbacks']); ?></h5>
                     <p>Commentaires</p>
                 </div>
             </div>
         </div>
 
-        <!-- User Table -->
+   
         <h3 class="text-center mt-5">Liste des Feedbacks</h3>
         <table class="table">
             <thead>

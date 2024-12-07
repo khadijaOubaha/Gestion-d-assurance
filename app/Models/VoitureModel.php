@@ -20,5 +20,5 @@ class VoitureModel extends Model
         'statut_assurance',
     ];
 
-    protected $useTimestamps = false;  // Si vous avez des champs timestamp (comme created_at), mettez à true.
+    protected $useTimestamps = false;  
 }

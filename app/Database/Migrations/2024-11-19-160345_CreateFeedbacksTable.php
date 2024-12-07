@@ -21,9 +21,9 @@ class CreateUsersTable extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '255',
             ],
-            // Other fields
+         
         ]);
-        $this->forge->addKey('userId', true); // Make userId a primary key
+        $this->forge->addKey('userId', true); 
         $this->forge->createTable('users', true, ['engine' => 'InnoDB']);
     }
 

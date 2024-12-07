@@ -10,7 +10,7 @@ class NotificationController extends Controller
     {
         $rendezVousModel = new RendezvousModel();
 
-        // Récupérer les rendez-vous en attente
+    
         $notifications = $rendezVousModel->where('statut', 'en attente')->findAll();
 
         return $this->response->setJSON($notifications);

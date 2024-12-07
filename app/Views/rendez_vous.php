@@ -13,24 +13,24 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/form.css') ?>" type="text/css">  
      <style>  
         body {  
-            background-color: #f8f9fa; /* Couleur de fond légère */  
+            background-color: #f8f9fa; 
         }  
         .msf-view {  
-            background-color: white; /* Couleur blanche pour le contenu */  
+            background-color: white; 
             border-radius: 5px;  
             padding: 20px;  
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Ombre autour du formulaire */  
-            margin-top: 20px; /* Espacement en haut du cadre */  
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+            margin-top: 20px;   
         }  
         .form-group label {  
-            font-weight: bold; /* Mise en gras des étiquettes */  
+            font-weight: bold;  
         }  
         .row {  
-            margin-bottom: 5px; /* Espacement entre les lignes */  
+            margin-bottom: 5px; 
         }  
         .info-title {  
-            font-size: 1.5rem; /* Taille de police pour le titre */  
-            margin-bottom: 20px; /* Espacement en bas du titre */  
+            font-size: 1.5rem; 
+            margin-bottom: 20px;  
         }  
         label{
             color:green;
@@ -50,7 +50,7 @@
                     <span class="sr-only">0% Complete</span>  
                 </div>  
             </div>  
-             <!-- Affichage du message de succès ou d'erreur -->
+             
     <?php if (session()->getFlashdata('success')) : ?>
         <div class="alert alert-success">
             <?= session()->getFlashdata('success'); ?>
@@ -157,7 +157,7 @@
         <option value="Essence" <?= $voiture['carburant'] === 'Essence' ? 'selected' : '' ?>>Essence</option>
         <option value="Diesel" <?= $voiture['carburant'] === 'Diesel' ? 'selected' : '' ?>>Diesel</option>
         <option value="Électrique" <?= $voiture['carburant'] === 'Électrique' ? 'selected' : '' ?>>Électrique</option>
-        <!-- Ajoutez d'autres options si nécessaire -->
+        
     </select>
 </div>
 <div class="form-group">
@@ -170,7 +170,7 @@
 </div>    
 
 <div class="msf-view">
-    <!-- Affichage des informations du client -->
+    
     <div class="vvvvvv">
         <br>
     <div class="row">
@@ -209,7 +209,7 @@
         </div>
     </div>
     
-    <!-- Affichage de la voiture -->
+
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <label>Marque</label>: <span><?= esc($voiture['marque']) ?></span>
@@ -233,13 +233,13 @@
     </div>
     <br>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="form-group">
-                <label for="date_rendezvous" style="color:black">Date du rendez-vous</label>
-                <input id="date_rendezvous" name="date_rendezvous" type="date" class="form-control" required>
-            </div>
+    <div class="col-md-6 col-md-offset-3">
+        <div class="form-group">
+            <label for="date_rendezvous" style="color:black">Date du rendez-vous</label>
+            <input id="date_rendezvous" name="date_rendezvous" type="date" class="form-control" required>
         </div>
     </div>
+</div>
    
 
     <div class="row">
@@ -255,14 +255,6 @@
         </div>
     </div>
 
-    <!-- Formulaire additionnel -->
-    <!-- <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="form-group">
-                <input id="additional" name="additional" type="text" class="form-control" placeholder="Additional Details" value="" required>
-            </div>
-        </div>
-    </div> -->
 </div>
 
                 </div>  
@@ -283,12 +275,12 @@
         </div>  
     </div>  
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->  
+  
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>  
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>  
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>  
-    <!-- Latest compiled and minified JavaScript -->  
+
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
     <script type="text/javascript" src="<?= base_url('assets/js/form.js') ?>"></script>  
 
@@ -339,6 +331,10 @@
             allowUnvalidatedStep: false,  
             allowClickNavigation: true  
         });  
+
+   
+    document.getElementById('date_rendezvous').setAttribute('min', new Date().toISOString().split('T')[0]);
+
     </script>  
 
 </body>  

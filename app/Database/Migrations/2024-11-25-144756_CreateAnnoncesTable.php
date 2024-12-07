@@ -7,7 +7,7 @@ class CreateAnnoncesTable extends Migration
 {
     public function up()
     {
-        // Create annonces table
+       
         $this->forge->addField([
             'annonceId' => [
                 'type'           => 'INT',

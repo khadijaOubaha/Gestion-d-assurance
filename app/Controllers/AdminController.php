@@ -60,37 +60,47 @@ class AdminController extends BaseController
     {
         $session = session();
         $session->destroy();
-        return redirect()->to('/admin/login');
+        return redirect()->to('http://localhost:8080/');
     }
 
     public function dashboard()
-    {
-        $session = session();
-    
-        if (!$session->get('isLoggedIn')) {
-            return redirect()->to('/admin/login')->with('error', 'Vous devez être connecté pour accéder à cette page.');
-        }
-    
-        $view = $this->request->getGet('view') ?? 'default';
-    
-        $clientModel = new \App\Models\ClientModel();
-        $feedbackModel = new \App\Models\FeedbackModel();
-    
-        // Récupérer les données nécessaires
-        $totalClients = $clientModel->countAllResults();
-        $feedbacks = $feedbackModel->findAll(); // Charger tous les feedbacks
-    
-        $data = [
-            'totalClients' => $totalClients,
-            'feedbacks' => $feedbacks, // Passer les feedbacks à la vue
-        ];
-    
-        if ($view === 'users_table') {
-            $data['clients'] = $clientModel->findAll();
-        }
-    
-        return view('admin/dashboard', ['view' => $view, 'data' => $data]);
+{
+    $session = session();
+
+    if (!$session->get('isLoggedIn')) {
+        return redirect()->to('/admin/login')->with('error', 'Vous devez être connecté pour accéder à cette page.');
     }
+
+    $view = $this->request->getGet('view') ?? 'default';
+
+    $clientModel = new \App\Models\ClientModel();
+    $feedbackModel = new \App\Models\FeedbackModel();
+    $rendezvousModel = new \App\Models\RendezvousModel();
+
+
+    $totalClients = $clientModel->findAll();
+    $feedbacks = $feedbackModel->findAll();
+    $Rendezvous = $rendezvousModel->findAll();
+
+    
+    $newRendezVousCount = $rendezvousModel->countNewRendezVous();
+    $newRendezVous = $rendezvousModel->getNewRendezVous();
+
+    $data = [
+        'totalClients' => $totalClients,
+        'feedbacks' => $feedbacks,
+        'rendezvous' => $Rendezvous,
+        'newRendezVousCount' => $newRendezVousCount, 
+        'newRendezVous' => $newRendezVous, 
+    ];
+
+    if ($view === 'users_table') {
+        $data['clients'] = $clientModel->findAll();
+    }
+
+    return view('admin/dashboard', ['view' => $view, 'data' => $data]);
+}
+
     
     
     
@@ -101,71 +111,14 @@ public function addUser()
     if (!$session->get('isLoggedIn')) {
         return redirect()->to('/admin/login')->with('error', 'Vous devez être connecté pour accéder à cette page.');
     }
+    
 
-    return view('admin/add_user', [
+    return view('admin/FFF', [
         'nom' => $session->get('nom'),
     ]);
 }
 
-public function saveUserWithCar()
-{
-    // Initialiser les modèles
-    $clientModel = new ClientModel();
-    $voitureModel = new VoitureModel();
 
-    // Récupérer les données du formulaire
-    $clientData = [
-        'nom' => $this->request->getPost('nom'),
-        'prenom' => $this->request->getPost('prenom'),
-        'adresse' => $this->request->getPost('adresse'),
-        'ville' => $this->request->getPost('ville'),
-        'telephone' => $this->request->getPost('telephone'),
-        'email' => $this->request->getPost('email'),
-        'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT), // Hash du mot de passe
-        'cin' => $this->request->getPost('cin'),
-        'date_naissance' => $this->request->getPost('date_naissance'),
-        'date_obtention_permis' => $this->request->getPost('date_obtention_permis'),
-    ];
-
-    // Récupérer les données de la voiture
-    $voitureData = [
-        'marque' => $this->request->getPost('marque'),
-        'modele' => $this->request->getPost('modele'),
-        'immatriculation' => $this->request->getPost('immatriculation'),
-        'puissance_fiscale' => $this->request->getPost('puissance_fiscale'),
-        'carburant' => $this->request->getPost('carburant'),
-        'annee_fabrication' => $this->request->getPost('annee_fabrication'),
-        'kilometrage' => $this->request->getPost('kilometrage'),
-    ];
-var_dump($clientData);
-    // Valider les données du client
-    $validation = \Config\Services::validation();
-    if (!$validation->run($clientData)) {
-        // Si la validation échoue, récupérer les erreurs
-        $errors = $validation->getErrors();
-        return redirect()->back()->with('error', 'Des erreurs de validation ont été détectées.')->withInput()->with('validationErrors', $errors);
-    }
-
-    // Insérer la voiture et obtenir son ID
-    $voitureId = $voitureModel->insert($voitureData);
-    if ($voitureId) {
-        // Ajouter l'id de la voiture au client
-        $clientData['id_voiture'] = $voitureId;
-
-        // Insérer le client
-        $clientInsert = $clientModel->insert($clientData);
-        if (!$clientInsert) {
-            $errors = $clientModel->errors();
-            return redirect()->back()->with('error', 'Erreur lors de l\'ajout du client.')->withInput()->with('validationErrors', $errors);
-        } else {
-            // Message de succès
-            return redirect()->to('/admin/dashboard')->with('success', 'Client et voiture ajoutés avec succès');
-        }
-    } else {
-        // Si l'enregistrement de la voiture échoue
-        return redirect()->back()->with('error', 'Erreur lors de l\'ajout de la voiture.');
-    }
-}
 
 
 public function usersTable()
@@ -195,17 +148,17 @@ public function deleteUser($id)
     return redirect()->back()->with('error', 'Erreur lors de la suppression de l\'utilisateur.');
 }
 
-public function editUser($id)
-{
-    $clientModel = new ClientModel();
-    $client = $clientModel->find($id);
+// public function editUser($id)
+// {
+//     $clientModel = new ClientModel();
+//     $client = $clientModel->find($id);
 
-    if (!$client) {
-        return redirect()->to('/admin/usersTable')->with('error', 'Utilisateur non trouvé.');
-    }
+//     if (!$client) {
+//         return redirect()->to('/admin/usersTable')->with('error', 'Utilisateur non trouvé.');
+//     }
 
-    return view('admin/edit_user', ['client' => $client]);
-}
+//     return view('admin/edit_user', ['client' => $client]);
+// }
 
 
 public function viewFeedbacks()
@@ -219,27 +172,7 @@ public function viewFeedbacks()
 public function hm(){
     return view('auto_infos');
 }
-// App\Controllers\Admin.php
-// public function notifications()
-// {
-//     $rendezvousModel = new RendezvousModel();
 
-//     // Compter les rendez-vous en attente
-//     $pendingCount = $rendezvousModel->countPendingRendezVous();
-
-//     // Récupérer les rendez-vous en attente
-//     $pendingRendezVous = $rendezvousModel
-//         ->select('rendez_vous.id, rendez_vous.date_rendez_vous, rendez_vous.heure_rendez_vous, clients.nom as client_nom, clients.prenom as client_prenom')
-//         ->join('clients', 'rendez_vous.id_client = clients.id')
-//         ->where('rendez_vous.statut', 'En attente')
-//         ->findAll();
-
-//     return view('admin/notifications', [
-//         'pendingCount' => $pendingCount,
-//         'pendingRendezVous' => $pendingRendezVous
-//     ]);
-// }
-// App\Controllers\Admin.php
 public function notifications()
 {
     $rendezvousModel = new \App\Models\RendezvousModel();
@@ -247,10 +180,23 @@ public function notifications()
     // Compter les nouveaux rendez-vous
     $newCount = $rendezvousModel->countNewRendezVous();
 
-    // Récupérer les rendez-vous marqués comme nouveaux
+    // Récupérer les rendez-vous avec informations des clients et des voitures
     $newRendezVous = $rendezvousModel
-        ->select('rendez_vous.id, rendez_vous.date_rendez_vous, rendez_vous.heure_rendez_vous, clients.nom as client_nom, clients.prenom as client_prenom')
-        ->join('clients', 'rendez_vous.id_client = clients.id')
+        ->select('
+            rendez_vous.id,
+            rendez_vous.date_rendez_vous,
+            rendez_vous.heure_rendez_vous,
+            clients.nom as client_nom,
+            clients.prenom as client_prenom,
+            clients.telephone as client_telephone,
+            clients.adresse as client_adresse,
+            voitures.marque as voiture_marque,
+            voitures.modele as voiture_modele,
+            voitures.carburant as voiture_carburant,
+            voitures.immatriculation as voiture_immatriculation
+        ')
+        ->join('clients', 'rendez_vous.id_client = clients.id') 
+        ->join('voitures', 'clients.id_voiture = voitures.id', 'left') 
         ->where('rendez_vous.is_new', 1)
         ->findAll();
 
@@ -260,20 +206,20 @@ public function notifications()
     ]);
 }
 
-// Marquer un rendez-vous comme lu (quand l'admin ouvre la page notifications)
+
+
+
 public function markAsSeen($id = null)
 {
     $rendezvousModel = new \App\Models\RendezvousModel();
     if ($id) {
-        // Marquer un seul rendez-vous
+       
         $rendezvousModel->update($id, ['is_new' => 0]);
     } else {
-        // Marquer tous les rendez-vous comme vus
+      
         $rendezvousModel->set(['is_new' => 0])->update();
     }
 
     return redirect()->to('admin/notifications');
 }
-
-
 }

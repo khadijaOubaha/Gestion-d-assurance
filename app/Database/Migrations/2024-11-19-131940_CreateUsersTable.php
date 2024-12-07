@@ -22,16 +22,16 @@ class CreateUsersTable extends Migration
             'email' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
-                'null'       => true, // Email facultatif pour feedbacks anonymes
+                'null'       => true, 
             ],
             'telephone' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '20',
-                'null'       => true, // Optionnel, uniquement s'il est fourni
+                'null'       => true, 
             ],
             'message' => [
                 'type'       => 'TEXT',
-                'null'       => false, // Obligatoire pour les feedbacks
+                'null'       => false, 
             ],
             
         ]);

@@ -26,23 +26,23 @@ class FeedbackController extends BaseController
 {
     $feedbackModel = new \App\Models\FeedbackModel();
 
-    // Récupérer les données envoyées par le formulaire
+   
     $message = $this->request->getPost('message');
     $rating = $this->request->getPost('rating');
 
-    // Valider les données (facultatif, mais recommandé)
+   
     if (empty($message) || empty($rating)) {
         return redirect()->back()->with('error', 'Veuillez remplir tous les champs.');
     }
 
-    // Sauvegarder le feedback
+
     $feedbackData = [
         'message' => $message,
         'rating' => $rating,
     ];
 
     if ($feedbackModel->insert($feedbackData)) {
-        // Retourner un message de succès sans redirection
+       
         return redirect()->back()->with('success', 'Votre message a été envoyé avec succès. Merci pour votre avis !');
     } else {
         return redirect()->back()->with('error', 'Une erreur est survenue. Veuillez réessayer.');

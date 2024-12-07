@@ -29,7 +29,7 @@ class CreateRendezVousTable extends Migration
                 'null' => false,
             ],
             'heure_rendez_vous' => [
-                'type' => 'TIME',  // Utilisation de TIME pour l'heure
+                'type' => 'TIME',  
                 'null' => false,
             ],
             'statut' => [

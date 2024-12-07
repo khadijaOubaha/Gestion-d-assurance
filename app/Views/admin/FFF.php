@@ -78,9 +78,8 @@
             </div>
         </div>
 
-        <form id="multiStepForm" action="<?= base_url('/admin/saveUserWithCar') ?>" method="post">
-            <?= csrf_field() ?>
-
+        <!-- <form id="multiStepForm" action="http://localhost:8080/admin/saveUserWithCar" method="POST"> -->
+<form id="multiStepForm" action="<?= base_url('/admin/saveUserWithCar') ?>" method="POST">
           
 <!-- Step 1: Basic Information -->
 <div class="step active">
@@ -97,25 +96,27 @@
         <input type="text" class="form-control" id="adresse" name="adresse" required>
     </div>
     <div class="mb-3">
-        <label for="password" class="form-label">Mot de Passe</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-    </div>
+    <label for="password" class="form-label">Mot de Passe</label>
+    <input type="password" class="form-control" id="password" name="password" required minlength="8" maxlength="20">
+    <small id="passwordError" class="form-text text-muted"></small>
+</div>
+<div class="mb-3">
+    <label for="cin" class="form-label">CIN</label>
+    <input type="text" class="form-control" id="cin" name="cin" required minlength="8" maxlength="8">
+    <small id="cinError" class="form-text text-muted"></small>
+</div>
+  
     <div class="mb-3">
-        <label for="ville" class="form-label">Ville</label>
-        <input type="text" class="form-control" id="ville" name="ville" required>
-    </div>
-    <div class="mb-3">
-        <label for="cin" class="form-label">CIN</label>
-        <input type="text" class="form-control" id="cin" name="cin" required>
-    </div>
-    <div class="mb-3">
-        <label for="date_naissance" class="form-label">Date de Naissance</label>
-        <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
-    </div>
-    <div class="mb-3">
-        <label for="date_obtention_permis" class="form-label">Date d'Obtention du Permis</label>
-        <input type="date" class="form-control" id="date_obtention_permis" name="date_obtention_permis" required>
-    </div>
+    <label for="date_naissance" class="form-label">Date de Naissance</label>
+    <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
+</div>
+<div class="mb-3">
+    <label for="date_obtention_permis" class="form-label">Date d'Obtention du Permis</label>
+    <input type="date" class="form-control" id="date_obtention_permis" name="date_obtention_permis" required>
+</div>
+
+
+
     
     <button type="button" class="btn btn-primary next-step">Suivant</button>
 </div>
@@ -232,7 +233,40 @@
             });
         });
     </script>
+<script>
+    
+    const today = new Date().toISOString().split('T')[0];
+    
+    document.getElementById('date_naissance').setAttribute('max', today);
+    document.getElementById('date_obtention_permis').setAttribute('max', today);
+</script>
+<script>
+    // Validation du mot de passe
+    document.getElementById('password').addEventListener('input', function() {
+        const password = document.getElementById('password').value;
+        const passwordError = document.getElementById('passwordError');
+        if (password.length < 8) {
+            passwordError.textContent = 'Le mot de passe doit comporter au moins 8 caractères.';
+        } else if (password.length > 20) {
+            passwordError.textContent = 'Le mot de passe ne doit pas dépasser 20 caractères.';
+        } else {
+            passwordError.textContent = '';
+        }
+    });
 
+    // Validation du CIN
+    document.getElementById('cin').addEventListener('input', function() {
+        const cin = document.getElementById('cin').value;
+        const cinError = document.getElementById('cinError');
+        if (cin.length < 8) {
+            cinError.textContent = 'Le CIN doit comporter exactement 8 caractères.';
+        } else if (cin.length > 8) {
+            cinError.textContent = 'Le CIN doit comporter exactement 8 caractères.';
+        } else {
+            cinError.textContent = '';
+        }
+    });
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

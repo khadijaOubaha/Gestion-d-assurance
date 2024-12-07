@@ -2,12 +2,15 @@
 
 namespace App\Controllers;
 
+use Config\Services;
+use App\Models\ClientModel;
 use CodeIgniter\Controller;
+use App\Models\VoitureModel;
+use Psr\Log\LoggerInterface;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use Psr\Log\LoggerInterface;
 
 /**
  * Class BaseController
@@ -55,4 +58,5 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+  
 }

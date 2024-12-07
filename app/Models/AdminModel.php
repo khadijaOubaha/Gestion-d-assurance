@@ -17,18 +17,18 @@ class AdminModel extends Model
 
     protected bool $allowEmptyInserts = false;
 
-    // Dates
+
     protected $useTimestamps = false;
     protected $deletedField  = 'deleted_at';
 
-    // Validation
+
     protected $validationRules      = ['email'    => 'required|valid_email',
         'password' => 'required|min_length[8]',];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
-    // Callbacks
+  
     protected $allowCallbacks = true;
     protected $beforeInsert   = [];
     protected $afterInsert    = [];

@@ -15,8 +15,7 @@
 <body>
     <div class="login-container">
         <i class="fas fa-user-circle user-icon"></i>
-        <!-- <h2>Connexion Administrateur</h2> -->
-        <!-- <p>Veuillez entrer vos identifiants pour accéder à votre tableau de bord.</p> -->
+       
 
         <?php if (session()->getFlashdata('error')): ?>
             <div class="alert alert-danger">
