@@ -23,12 +23,10 @@ class AdminModel extends Model
 
 
     protected $validationRules      = ['email'    => 'required|valid_email',
-        'password' => 'required|min_length[8]',];
+                                       'password' => 'required|min_length[8]',];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
-
-  
     protected $allowCallbacks = true;
     protected $beforeInsert   = [];
     protected $afterInsert    = [];

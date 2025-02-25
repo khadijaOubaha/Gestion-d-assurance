@@ -55,7 +55,10 @@ class RendezvousModel extends Model
         ->where('rendez_vous.id', $id)
         ->first();
     }
-
+    public function countNewRendezVous()
+    {
+        return $this->where('is_new', 1)->countAllResults();
+    }
     public function getNewRendezVous()
     {
         return $this->select('
@@ -77,13 +80,10 @@ class RendezvousModel extends Model
         ->findAll();
     }
 
-    public function countNewRendezVous()
-    {
-        return $this->where('is_new', 1)->countAllResults();
-    }
+   
     public function getNewRendezvousCount()
 {
-    return $this->where('is_new', 1)->countAllResults();  // Exemple de méthode pour compter les nouveaux rendez-vous
+    return $this->where('is_new', 1)->countAllResults(); 
 }
 
 

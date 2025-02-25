@@ -6,12 +6,12 @@ use CodeIgniter\Model;
 
 class ClientModel extends Model  
 {  
-    protected $table      = 'clients'; // Nom de la table  
-    protected $primaryKey = 'id';      // Clé primaire  
+    protected $table      = 'clients'; 
+    protected $primaryKey = 'id';      
 
-    protected $useAutoIncrement = true; // Utiliser l'auto-incrément  
+    protected $useAutoIncrement = true; 
 
-    // Données qui peuvent être insérées/mises à jour  
+    
     protected $allowedFields = [  
         'nom',   
         'prenom',   
@@ -33,7 +33,7 @@ class ClientModel extends Model
         'prenom' => 'required|max_length[100]',  
         'adresse' => 'max_length[255]',  
         'ville' => 'max_length[100]',  
-        'telephone' => 'max_length[20]|regex_match[/^[0-9\-\+\s()]+$/]',  
+        'telephone' => 'max_length[10]|regex_match[/^[0-9\-\+\s()]+$/]',  
         'email' => 'required|valid_email|is_unique[clients.email,id,{id}]',  
         'password' => 'required|max_length[255]',  
         'cin' => 'required|is_unique[clients.cin,id,{id}]',  
@@ -51,7 +51,7 @@ class ClientModel extends Model
         ],  
     ];  
 
-    protected $skipValidation = false; // Définit à true si la validation doit être ignorée  
+    protected $skipValidation = false; 
 
     // Méthodes personnalisées peuvent être ajoutées ici  
 

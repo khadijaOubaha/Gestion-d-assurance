@@ -45,7 +45,8 @@
   <div class="branding d-flex align-items-center">
     <div class="container position-relative d-flex align-items-center justify-content-between">
       <a href="<?= base_url('index.php') ?>" class="logo d-flex align-items-center me-auto">
-        <h1 class="sitename">AMANASS</h1>
+        <h1 class="sitename">Drop Of Life
+        </h1>
       </a>
       <nav id="navmenu" class="navmenu">
         <ul>
@@ -53,7 +54,7 @@
           <li><a href="#about">Nous</a></li>
           <li class="dropdown"><a href="#"><span>Nos produits</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/Auto/info">Véhicule</a></li>
+              <li><a href="/Auto/info">Votre plantes:</a></li>
            
             </ul>
           </li>
@@ -65,13 +66,11 @@
           
           <?php if (session()->get('loggedIn') && session()->get('userRole') == 'client'): ?>
             
-            <li class="dropdown"><a href="#"><span>Auto</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <!-- <li class="dropdown"><a href="#"><span>Auto</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-            <li><a href="<?= base_url('rendezvous/create') ?>">Prendre un rendez-vous</a></li>
-              <li><a href="<?= base_url('/client/rendezvous') ?>" >Mes rendez-vous</a></li>
-           
+            
             </ul>
-          </li>
+          </li> -->
            
 
             <li><a href="<?= base_url('/profil') ?>">Mon Compte</a></li>
@@ -94,10 +93,10 @@
 
   <main class="main">
     <section id="hero" class="hero section light-background">
-      <img src="<?= base_url('assets/img/familyy.jpg') ?>" alt="" data-aos="fade-in">
+      <img src="<?= base_url('assets/img/imageee.png') ?>" alt="" data-aos="fade-in">
       <div class="container position-relative">
         <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
-        <h2>Bienvenue sur AMANASS</h2>  
+        <h2 style="color:#FAFAFA">Bienvenue sur Drop Of Life</h2>  
 <?php if (session()->get('loggedIn')): ?>  
     <?php if (session()->get('userRole') === 'admin'): ?>  
         <h1>Bienvenue, Admin <?= esc(session()->get('userName')) ?>!</h1>  
@@ -108,13 +107,13 @@
     <h1></h1>  
 <?php endif; ?>
 
-          <p>Découvrez nos offres sur mesure pour mieux répondre à vos besoins!</p>
+          <p style="color:black">Découvrez nos offres sur mesure pour mieux répondre à vos besoins!</p>
         </div>
         <div class="content row gy-4">
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
-              <h3>Pourquoi choisir AMANASS?</h3>
-              <p>AMANASS est une agence spécialisée dans la gestion des assurances automobiles,...</p>
+              <h3>Pourquoi choisir DOL ?</h3>
+              <p>DOL (Drop Of Life) est une application sert gérer votre l'eau et rencontrer votre besoines au niveau d'irrigation....</p>
               <div class="text-center">
                 <a href="#about" class="more-btn"><span>En savoir plus </span> <i class="bi bi-chevron-right"></i></a>
               </div>
@@ -127,7 +126,7 @@
                   <div class="icon-box" data-aos="zoom-out" data-aos-delay="300">
                     <i class="bi bi-clipboard-data"></i>
                     <h4>Disponibilité des agents</h4>
-                    <p>Nos agents sont disponibles pour vous guider dans vos démarches </p>
+                    <p >Nos agents sont disponibles pour vous guider dans vos démarches </p>
                   </div>
                 </div>
                 <div class="col-xl-4 d-flex align-items-stretch">
@@ -159,35 +158,35 @@
   <div class="row gy-4 gx-5">
 
     <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="200">
-      <img src="assets/img/auto.jpg" class="img-fluid" alt="">
+      <img src="assets/img/télécharger.jpeg" class="img-fluid" alt="">
       <!-- <a href="https://www.youtube.com/watch?v=WZipC2ofBMw" class="glightbox pulsating-play-btn"></a> -->
     </div>
 
     <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
       <h3>Apropos de Nous</h3>
-      <p>
-      AMANASS est une agence spécialisée dans la gestion des assurances automobiles, offrant des services adaptés aux besoins des conducteurs. Nous mettons l'accent sur la simplicité et la transparence pour accompagner nos clients tout au long du processus.
-      </p>
+      <!-- <p>
+      Drop Of Life est une agence spécialisée dans la gestion des assurances automobiles, offrant des services adaptés aux besoins des conducteurs. Nous mettons l'accent sur la simplicité et la transparence pour accompagner nos clients tout au long du processus.
+      </p> -->
       <ul>
         <li>
         <i class="fa-solid fa-shield"></i>
         <div>
             <h5>Des solutions adaptées à vos besoins</h5>
-            <p>Nous proposons une large gamme de services d'assurance qui s'ajustent à votre style de vie et à vos objectifs.</p>
+            <!-- <p>Nous proposons une large gamme de services d'assurance qui s'ajustent à votre style de vie et à vos objectifs.</p> -->
           </div>
         </li>
         <li>
         <i class="fa-solid fa-headset"></i>
         <div>
             <h5>Un service client réactif et fiable</h5>
-            <p>Notre équipe est disponible pour vous accompagner à chaque étape avec rapidité et efficacité.</p>
+            <!-- <p>Notre équipe est disponible pour vous accompagner à chaque étape avec rapidité et efficacité.</p> -->
           </div>
         </li>
         <li>
         <i class="fa-solid fa-handshake"></i>
         <div>
             <h5>Une confiance bâtie sur la transparence</h5>
-            <p>Nous croyons en des relations durables fondées sur l'honnêteté et la transparence envers nos clients.</p>
+            <!-- <p>Nous croyons en des relations durables fondées sur l'honnêteté et la transparence envers nos clients.</p> -->
           </div>
         </li>
 </ul>
@@ -202,115 +201,9 @@
 <section id="services" class="services section">
 
 
-<div class="container section-title" data-aos="fade-up">
-  <h2>Services</h2>
-  
-</div>
-
-<div class="container">
-
-  <div class="row gy-4">
-
-    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-      <div class="service-item  position-relative">
-        <div class="icon">
-        <i class="fa-solid fa-shield"></i>
-        </div>
-        <a href="#" class="stretched-link">
-          <h3>Réservation de rendez-vous </h3>
-        </a>
-        <p>Notre plateforme en ligne permet aux clients de réserver un rendez-vous pour effectuer leur paiement d’assurance directement en agence. Cela leur évite de perdre du temps dans des files d’attente</p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-      <div class="service-item position-relative">
-        <div class="icon">
-        <i class="fa-solid fa-handshake"></i>
-        </div>
-        <a href="#" class="stretched-link">
-          <h3>Gestion des informations</h3>
-        </a>
-        <p>Les clients peuvent facilement fournir leurs données personnelles, les informations sur leur véhicule (marque, puissance, carburant, etc.) ainsi que la date d’obtention de leur permis de conduire</p>
-      </div>
-    </div>
-
-    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-      <div class="service-item position-relative">
-        <div class="icon">
-          <i class="fas fa-hospital-user"></i>
-        </div>
-        <a href="#" class="stretched-link">
-          <h3>Service de proximité </h3>
-        </a>
-        <p>Nous favorisons le contact humain en évitant les paiements en ligne. Cela permet aux clients de se rendre en agence pour bénéficier d’un service personnalisé et d’échanger directement avec nos agents</p>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
-</section>
 
 
 
-
-
-<section id="faq" class="faq section light-background">
-
-
-<div class="container section-title" data-aos="fade-up">
-  <h2>questions fréquentes</h2>
-  <p>Il est destiné à répondre à ses besoins, en fuyant quelque chose, il est en effet nécessaire qu'il soit conforme à ce qu'il veut</p>
-</div>
-
-<div class="container">
-
-  <div class="row justify-content-center">
-
-    <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
-
-      <div class="faq-container">
-
-        <div class="faq-item faq-active">
-          <h3>Comment puis-je réserver un rendez-vous pour payer mon assurance ?
-          </h3>
-          <div class="faq-content">
-            <p>Pour réserver un rendez-vous, rendez-vous sur notre plateforme en ligne. Complétez le formulaire de réservation avec vos informations personnelles et celles de votre véhicule, puis choisissez la date et l’heure qui vous conviennent. Puis accedez a votre espace client pour recevrez une confirmation .</p>
-          </div>
-          <i class="faq-toggle bi bi-chevron-right"></i>
-        </div>
-
-        <div class="faq-item">
-          <h3>Quels documents dois-je apporter lors du rendez-vous ?</h3>
-          <div class="faq-content">
-            <p>Lors de votre rendez-vous, veuillez apporter :
-
-Votre carte d’identité.
-Le permis de conduire.
-Les documents relatifs à votre véhicule (carte grise, etc.).
-Toute autre information pertinente liée à votre assurance.</p>
-          </div>
-          <i class="faq-toggle bi bi-chevron-right"></i>
-        </div>
-
-        <div class="faq-item">
-          <h3>Est-ce que je peux payer mon assurance en ligne ?</h3>
-          <div class="faq-content">
-            <p>Actuellement, nous n’acceptons pas les paiements en ligne. Vous devez vous rendre en agence pour effectuer le paiement lors de votre rendez-vous.</p>
-          </div>
-          <i class="faq-toggle bi bi-chevron-right"></i>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-</section>
 
 
 
@@ -399,7 +292,7 @@ Toute autre information pertinente liée à votre assurance.</p>
         <div class="row gy-4">
             <div class="col-lg-4 col-md-6 footer-about">
                 <a href="index.html" class="logo d-flex align-items-center">
-                    <span class="sitename">AMANASS</span>
+                    <span class="sitename">Drop Of Life</span>
                 </a>
                 <div class="footer-contact pt-2">
                     <p class="mt-3"><strong>Téléphone:</strong> <span>+212 5 91730320</span></p>

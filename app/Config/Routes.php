@@ -6,6 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+// $routes->get('/', 'hController::addAdmin');
 
 
 $routes->get('/login_client','ClientController::loginPage');
@@ -25,9 +26,9 @@ $routes->get('/admin/logout', 'AdminController::logout');
 $routes->get('/admin/addUser', 'AdminController::addUser');
 $routes->post('/admin/saveUserWithCar', 'hController::hhh');
 $routes->get('/admin/usersTable', 'AdminController::usersTable');
-$routes->get('/admin/editUser/(:num)', 'AdminController::editUser/$1'); // Route pour modifier
-$routes->get('/admin/deleteUser/(:num)', 'AdminController::deleteUser/$1'); // Route pour supprimer
-$routes->get('/admin/warnUser/(:num)', 'AdminController::warnUser/$1'); // Route pour avertir
+$routes->get('/admin/editUser/(:num)', 'AdminController::editUser/$1'); 
+$routes->get('/admin/deleteUser/(:num)', 'AdminController::deleteUser/$1'); 
+$routes->get('/admin/warnUser/(:num)', 'AdminController::warnUser/$1'); 
 $routes->get('/notifications/getNotifications', 'NotificationController::getNotifications');
 $routes->post('/feedback/submit', 'FeedbackController::submit');
 $routes->get('/admin/feedbacks', 'AdminController::viewFeedbacks');
@@ -41,3 +42,4 @@ $routes->get('uploads/pdfs/(:any)', function($fileName) {
     return redirect()->to(WRITEPATH . 'uploads/pdfs/' . $fileName);
 });
 $routes->get('/profil', 'ClientController::profile');
+$routes->get('/humidite', 'ClientController::accee');

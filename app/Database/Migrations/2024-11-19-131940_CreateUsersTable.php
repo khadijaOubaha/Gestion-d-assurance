@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             'nom' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
-                'null'       => true, // Nom facultatif pour les feedbacks anonymes
+                'null'       => true, 
             ],
             'email' => [
                 'type'       => 'VARCHAR',

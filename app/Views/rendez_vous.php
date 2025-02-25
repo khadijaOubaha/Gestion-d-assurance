@@ -297,14 +297,11 @@
     self.Dob = ko.observable('');  
     self.AdditionalDetails = ko.observable('');  
     
-    // Ajout des informations autour de la voiture  
+ 
     self.Marque = ko.observable('');  
     self.PuissanceFiscale = ko.observable('');  
     self.Carburant = ko.observable('');  
     self.Immatriculation = ko.observable('');  
-
-    // Ajout des villes disponibles  
-    // self.availableCities = ko.observableArray(['Paris', 'Lyon', 'Marseille', 'Bordeaux', 'Nice']);  
     self.availableTypes = ko.observableArray(['New', 'Open', 'Closed']);  
     self.chosenType = ko.observable('');  
 

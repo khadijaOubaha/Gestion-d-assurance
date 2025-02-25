@@ -41,11 +41,11 @@ class hController extends BaseController
         $adminModel = new AdminModel();
 
         $data = [
-            'nom'     => 'Super',
-            'prenom'  => 'Admin',
-            'email'   => 'safae28@gmail.com',
-            'password'=> password_hash('safa123', PASSWORD_DEFAULT),
-            'role'    => 'superadmin',
+            'nom'     => 'Laila',
+            'prenom'  => 'Sami',
+            'email'   =>'laila28@gmail.com',
+            'password'=> password_hash('lali123', PASSWORD_DEFAULT),
+            'role'    => 'admin',
         ];
 
         if ($adminModel->insert($data)) {

@@ -31,7 +31,7 @@
     .welcome-section {
       flex: 1;
       position: relative;
-      background: url('assets/img/hh.jpg') center center/cover no-repeat;
+      background: url('assets/img/lalala.jpeg') center center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;

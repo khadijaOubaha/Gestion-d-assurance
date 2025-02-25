@@ -13,20 +13,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $mail = new PHPMailer(true);
 
     try {
-        // Configurer le serveur SMTP
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // Remplacez par votre serveur SMTP
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'safa.belhoufrte.44@edu.uiz.ac.ma'; // Remplacez par votre email
-        $mail->Password = 'inqp ttds izyw ffgl'; // Remplacez par votre mot de passe
+        $mail->Username = 'safa.belhoufrte.44@edu.uiz.ac.ma';
+        $mail->Password = 'inqp ttds izyw ffgl';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
-        // Définir les destinataires
         $mail->setFrom($email, $name);
-        $mail->addAddress('safa.belhoufrte.44@edu.uiz.ac.ma'); // Email de l'entreprise
+        $mail->addAddress('safa.belhoufrte.44@edu.uiz.ac.ma');
 
-        // Contenu de l'email
         $mail->isHTML(true);
         $mail->Subject = $subject;
         $mail->Body = "

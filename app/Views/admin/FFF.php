@@ -241,7 +241,7 @@
     document.getElementById('date_obtention_permis').setAttribute('max', today);
 </script>
 <script>
-    // Validation du mot de passe
+ 
     document.getElementById('password').addEventListener('input', function() {
         const password = document.getElementById('password').value;
         const passwordError = document.getElementById('passwordError');
@@ -254,7 +254,7 @@
         }
     });
 
-    // Validation du CIN
+   
     document.getElementById('cin').addEventListener('input', function() {
         const cin = document.getElementById('cin').value;
         const cinError = document.getElementById('cinError');

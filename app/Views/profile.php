@@ -104,7 +104,6 @@
     <div class="container">
         <h1>Bienvenue, <?= esc($user['prenom']); ?> <?= esc($user['nom']); ?></h1>
 
-        <!-- Affichage des informations du client -->
         <div class="info-box">
             <h2>Informations personnelles</h2>
             <p><strong>Email:</strong> <?= esc($user['email']); ?></p>

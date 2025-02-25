@@ -158,7 +158,12 @@
                             <?php elseif ($rendezvousItem['statut'] == 'validé'): ?>
                                 <a href="<?= base_url('pdfs/rendezvous_' . $rendezvousItem['id'] . '.pdf') ?>" class="btn btn-success" target="_blank">Télécharger le PDF</a>
                                 <a href="/rendezvous/delete/<?= $rendezvousItem['id'] ?>" class="btn btn-danger">Supprimer</a>
-                            <?php else: ?>
+                                <?php elseif ($rendezvousItem['statut'] == 'rejeté'): ?>
+                              
+                                <a href="/rendezvous/delete/<?= $rendezvousItem['id'] ?>" class="btn btn-danger">Supprimer</a>
+                           
+                            
+                                <?php else: ?>
                                 
                             <?php endif; ?>
                         </td>

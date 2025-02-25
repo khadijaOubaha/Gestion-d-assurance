@@ -1,156 +1,90 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMANASS Auto AminAss</title>
+    <title>Liste des Plantes</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Global Styles */
+        /* Style général */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9fafb;
+            background-color: #f4f4f9;
             color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
         }
 
         h1 {
-            text-align: center;
-            font-size: 2.5em;
-            color: #007bff;
-            margin: 30px 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin: 0;
         }
 
-        .product-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin: 40px 20px;
-            text-align: center;
+        main {
+            padding: 2rem;
         }
 
-        .product-image {
-            width: 350px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Galerie des plantes */
+        .plant-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 0;
+            margin: 0;
         }
 
-        .product-image:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-        }
-
-        .product-info {
-            background-color: #fff;
-            padding: 40px;
-            margin-top: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            max-width: 900px;
-            width: 95%;
-            text-align: left;
-        }
-
-        .product-info h2 {
-            color: #007bff;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-
-        .product-info p {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .product-info ul {
-            list-style: disc;
-            margin: 20px 0;
-            padding-left: 20px;
-        }
-
-        .product-info ul li {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 30px;
-            margin-top: 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
+        figure {
+            background-color: white;
             border-radius: 8px;
-            font-size: 1.2em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            margin: 0;
+        }
+
+        figure img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        figcaption {
+            padding: 0.5rem;
+            font-size: 1rem;
             font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: #0056b3;
-            transform: translateY(-3px);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .product-image {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .product-info {
-                padding: 20px;
-            }
-
-            .product-info h2 {
-                font-size: 1.5em;
-            }
-
-            .cta-button {
-                font-size: 1rem;
-                padding: 12px 20px;
-            }
+            color: #4CAF50;
         }
     </style>
 </head>
 <body>
-
-    <h1>AMANASS Auto AminAss</h1>
-
-    <div class="product-container">
-     
-        <img src="<?= base_url('/assets/img/login_client.jpg') ?>" alt="AMANASS Auto" class="product-image">
-      
-        <div class="product-info">
-            <h2>AMANASS Auto Complète</h2>
-            <p>Chez <strong>AmanAss</strong>, nous offrons une couverture complète pour votre véhicule, avec des options flexibles pour s'adapter à vos besoins spécifiques. Profitez d'une tranquillité d'esprit totale, que vous soyez sur la route ou à la maison.</p>
-
-            <p><strong>Ce que nous offrons :</strong></p>
-            <ul>
-                <li>Protection contre les accidents et dégâts matériels.</li>
-                <li>AMANASS vol et incendie pour votre véhicule.</li>
-                <li>Assistance routière 24/7.</li>
-                <li>Options personnalisées pour chaque conducteur.</li>
-            </ul>
-
-            <p><strong>Pourquoi choisir AminAss ?</strong></p>
-            <ul>
-                <li>Service rapide et réactif.</li>
-                <li>Prix compétitifs et transparents.</li>
-                <li>Assistance et conseils personnalisés.</li>
-            </ul>
-
-            <a href="http://localhost:8080/#contact" class="cta-button">Souscrire maintenant</a>
-        </div>
-    </div>
-
+    <header>
+        <h1>Liste des Plantes</h1>
+    </header>
+    <main>
+        <section class="plant-gallery">
+            <figure>
+                <!-- Lien cliquable sur l'image -->
+                <a href="<?= base_url('/humidite') ?>">
+                    <img src="<?= base_url('assets/img/1.jpeg') ?>" alt="Plante 1">
+                </a>
+                <figcaption>Plante 1</figcaption>
+            </figure>
+            <figure>
+                <img src="<?= base_url('assets/img/2.jpeg') ?>" alt="Plante 2">
+                <figcaption>Plante 2</figcaption>
+            </figure>
+            <figure>
+                <img src="<?= base_url('assets/img/3.jpeg') ?>" alt="Plante 3">
+                <figcaption>Plante 3</figcaption>
+            </figure>
+            <!-- Ajoutez d'autres figures si nécessaire -->
+        </section>
+    </main>
 </body>
 </html>

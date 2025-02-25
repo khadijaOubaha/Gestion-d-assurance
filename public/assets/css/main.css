@@ -15,13 +15,13 @@
   }
   
   a {
-    color: #1977cc;
+    color: #478e1a;
     text-decoration: none;
     transition: 0.3s;
   }
   
   a:hover {
-    color: color-mix(in srgb, #1977cc, transparent 25%);
+    color: color-mix(in srgb, #478e1a, transparent 25%);
     text-decoration: none;
   }
   
@@ -40,7 +40,7 @@
   .pulsating-play-btn {
     width: 94px;
     height: 94px;
-    background: radial-gradient(#1977cc 50%, color-mix(in srgb, #1977cc, transparent 75%) 52%);
+    background: radial-gradient(#478e1a 50%, color-mix(in srgb, #478e1a, transparent 75%) 52%);
     border-radius: 50%;
     display: block;
     position: relative;
@@ -59,7 +59,7 @@
     animation-timing-function: steps;
     opacity: 1;
     border-radius: 50%;
-    border: 5px solid color-mix(in srgb, #1977cc, transparent 30%);
+    border: 5px solid color-mix(in srgb, #478e1a, transparent 30%);
     top: -15%;
     left: -15%;
     background: rgba(198, 16, 0, 0);
@@ -98,7 +98,7 @@
   }
   
   .pulsating-play-btn:hover:after {
-    border-left: 15px solid #1977cc;
+    border-left: 15px solid #478e1a;
     transform: scale(20);
   }
   
@@ -151,7 +151,7 @@
     width: 24px;
     height: 24px;
     margin: 0 10px -6px 0;
-    border: 3px solid #1977cc;
+    border: 3px solid #478e1a;
     border-top-color: #ffffff;
     animation: php-email-form-loading 1s linear infinite;
   }
@@ -177,7 +177,7 @@
   }
   
   .header .topbar {
-    background-color: #1977cc;
+    background-color: #478e1a;
     height: 40px;
     padding: 0;
     font-size: 14px;
@@ -248,7 +248,7 @@
   .header .cta-btn,
   .header .cta-btn:focus {
     color: #ffffff;
-    background: #1977cc;
+    background: #478e1a;
     font-size: 14px;
     padding: 8px 25px;
     margin: 0 0 0 30px;
@@ -259,7 +259,7 @@
   .header .cta-btn:hover,
   .header .cta-btn:focus:hover {
     color: #ffffff;
-    background: color-mix(in srgb, #1977cc, transparent 15%);
+    background: color-mix(in srgb, #478e1a, transparent 15%);
   }
   
   @media (max-width: 1200px) {
@@ -348,7 +348,7 @@
       height: 2px;
       bottom: -6px;
       left: 0;
-      background-color: #1977cc;
+      background-color: #478e1a;
       visibility: hidden;
       width: 0px;
       transition: all 0.3s ease-in-out 0s;
@@ -364,7 +364,7 @@
     .navmenu li:hover>a,
     .navmenu .active,
     .navmenu .active:focus {
-      color: #1977cc;
+      color: #478e1a;
     }
   
     .navmenu .dropdown ul {
@@ -401,7 +401,7 @@
     .navmenu .dropdown ul a:hover,
     .navmenu .dropdown ul .active:hover,
     .navmenu .dropdown ul li:hover>a {
-      color: #1977cc;
+      color: #478e1a;
     }
   
     .navmenu .dropdown:hover>ul {
@@ -482,24 +482,24 @@
       justify-content: center;
       border-radius: 50%;
       transition: 0.3s;
-      background-color: color-mix(in srgb, #1977cc, transparent 90%);
+      background-color: color-mix(in srgb, #478e1a, transparent 90%);
     }
   
     .navmenu a i:hover,
     .navmenu a:focus i:hover {
-      background-color: #1977cc;
+      background-color: #478e1a;
       color: #ffffff;
     }
   
     .navmenu a:hover,
     .navmenu .active,
     .navmenu .active:focus {
-      color: #1977cc;
+      color: #478e1a;
     }
   
     .navmenu .active i,
     .navmenu .active:focus i {
-      background-color: #1977cc;
+      background-color: #478e1a;
       color: #ffffff;
       transform: rotate(180deg);
     }
@@ -556,7 +556,7 @@
   .footer {
     color: #444444;
     background-color: #ffffff;
-    border-top: 1px solid color-mix(in srgb, #1977cc, transparent 75%);
+    border-top: 1px solid color-mix(in srgb, #478e1a, transparent 75%);
     font-size: 14px;
     position: relative;
   }
@@ -603,8 +603,8 @@
   }
   
   .footer .social-links a:hover {
-    color: #1977cc;
-    border-color: #1977cc;
+    color: #478e1a;
+    border-color: #478e1a;
   }
   
   .footer h4 {
@@ -647,7 +647,7 @@
   }
   
   .footer .footer-links ul a:hover {
-    color: #1977cc;
+    color: #478e1a;
   }
   
   .footer .footer-contact p {
@@ -687,7 +687,7 @@
     top: calc(50% - 30px);
     left: calc(50% - 30px);
     border: 6px solid #ffffff;
-    border-color: #1977cc transparent #1977cc transparent;
+    border-color: #478e1a transparent #478e1a transparent;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -714,7 +714,7 @@
     right: 15px;
     bottom: 15px;
     z-index: 99999;
-    background-color: #1977cc;
+    background-color: #478e1a;
     width: 40px;
     height: 40px;
     border-radius: 4px;
@@ -728,7 +728,7 @@
   }
   
   .scroll-top:hover {
-    background-color: color-mix(in srgb, #1977cc, transparent 20%);
+    background-color: color-mix(in srgb, #478e1a, transparent 20%);
     color: #ffffff;
   }
   
@@ -757,7 +757,7 @@
   
   .page-title .heading {
     padding: 80px 0;
-    border-top: 1px solid color-mix(in srgb, #1977cc, transparent 80%);
+    border-top: 1px solid color-mix(in srgb, #478e1a, transparent 80%);
   }
   
   .page-title .heading h1 {
@@ -766,7 +766,7 @@
   }
   
   .page-title nav {
-    background-color: color-mix(in srgb, #1977cc, transparent 94%);
+    background-color: color-mix(in srgb, #478e1a, transparent 94%);
     padding: 20px 0;
   }
   
@@ -846,7 +846,7 @@
     display: block;
     width: 60px;
     height: 3px;
-    background: #1977cc;
+    background: #478e1a;
     left: 0;
     right: 0;
     bottom: 0;
@@ -902,7 +902,7 @@
   
   .hero .content .why-box {
     color: #ffffff;
-    background: #1977cc;
+    background: #478e1a;
     padding: 30px;
     border-radius: 4px;
   }
@@ -933,7 +933,7 @@
   
   .hero .content .why-box .more-btn:hover {
     background: #ffffff;
-    color: #1977cc;
+    color: #478e1a;
   }
   
   .hero .content .icon-box {
@@ -947,7 +947,7 @@
   
   .hero .content .icon-box i {
     font-size: 40px;
-    color: #1977cc;
+    color: #478e1a;
   }
   
   .hero .content .icon-box h4 {
@@ -983,7 +983,7 @@
   .about .content ul i {
     flex-shrink: 0;
     font-size: 48px;
-    color: #1977cc;
+    color: #478e1a;
     margin-right: 20px;
   }
   
@@ -1011,7 +1011,7 @@
   --------------------------------------------------------------*/
   .stats i {
     color: #ffffff;
-    background-color: #1977cc;
+    background-color: #478e1a;
     box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1);
     width: 54px;
     height: 54px;
@@ -1068,7 +1068,7 @@
     margin: 0 auto;
     width: 64px;
     height: 64px;
-    background: #1977cc;
+    background: #478e1a;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -1091,7 +1091,7 @@
     top: -8px;
     height: 100%;
     width: 100%;
-    background: color-mix(in srgb, #1977cc, transparent 80%);
+    background: color-mix(in srgb, #478e1a, transparent 80%);
     border-radius: 5px;
     transition: all 0.3s ease-out 0s;
     transform: translateZ(-1px);
@@ -1110,8 +1110,8 @@
   }
   
   .services .service-item:hover {
-    background: #1977cc;
-    border-color: #1977cc;
+    background: #478e1a;
+    border-color: #478e1a;
   }
   
   .services .service-item:hover .icon {
@@ -1119,7 +1119,7 @@
   }
   
   .services .service-item:hover .icon i {
-    color: #1977cc;
+    color: #478e1a;
   }
   
   .services .service-item:hover .icon::before {
@@ -1157,7 +1157,7 @@
   .appointment .php-email-form input:focus,
   .appointment .php-email-form textarea:focus,
   .appointment .php-email-form select:focus {
-    border-color: #1977cc;
+    border-color: #478e1a;
   }
   
   .appointment .php-email-form input::placeholder,
@@ -1176,7 +1176,7 @@
   }
   
   .appointment .php-email-form button[type=submit] {
-    background: #1977cc;
+    background: #478e1a;
     border: 0;
     padding: 10px 35px;
     color: #fff;
@@ -1185,7 +1185,7 @@
   }
   
   .appointment .php-email-form button[type=submit]:hover {
-    background: color-mix(in srgb, #1977cc 90%, white 15%);
+    background: color-mix(in srgb, #478e1a 90%, white 15%);
   }
   
   /*--------------------------------------------------------------
@@ -1211,12 +1211,12 @@
   }
   
   .departments .nav-link:hover {
-    color: #1977cc;
+    color: #478e1a;
   }
   
   .departments .nav-link.active {
-    color: #1977cc;
-    border-color: #1977cc;
+    color: #478e1a;
+    border-color: #478e1a;
     background-color: #ffffff;
   }
   
@@ -1245,8 +1245,8 @@
     }
   
     .departments .nav-link.active {
-      color: #1977cc;
-      background: #1977cc;
+      color: #478e1a;
+      background: #478e1a;
     }
   }
   
@@ -1365,7 +1365,7 @@
   }
   
   .doctors .team-member .social a:hover {
-    background: #1977cc;
+    background: #478e1a;
   }
   
   .doctors .team-member .social a:hover i {
@@ -1384,7 +1384,7 @@
     position: relative;
     padding: 20px;
     margin-bottom: 15px;
-    border: 1px solid color-mix(in srgb, #1977cc, transparent 75%);
+    border: 1px solid color-mix(in srgb, #478e1a, transparent 75%);
     border-radius: 5px;
     overflow: hidden;
   }
@@ -1405,12 +1405,12 @@
   }
   
   .faq .faq-container .faq-item h3 .num {
-    color: #1977cc;
+    color: #478e1a;
     padding-right: 5px;
   }
   
   .faq .faq-container .faq-item h3:hover {
-    color: #1977cc;
+    color: #478e1a;
   }
   
   .faq .faq-container .faq-item .faq-content {
@@ -1437,12 +1437,12 @@
   }
   
   .faq .faq-container .faq-item .faq-toggle:hover {
-    color: #1977cc;
+    color: #478e1a;
   }
   
   .faq .faq-container .faq-active {
-    background-color: #1977cc;
-    border-color: #1977cc;
+    background-color: #478e1a;
+    border-color: #478e1a;
     color: #ffffff;
   }
   
@@ -1460,7 +1460,7 @@
   
   .faq .faq-container .faq-active .faq-toggle {
     transform: rotate(90deg);
-    color: #1977cc;
+    color: #478e1a;
   }
   
   /*--------------------------------------------------------------
@@ -1519,7 +1519,7 @@
   
   .testimonials .testimonial-item .quote-icon-left,
   .testimonials .testimonial-item .quote-icon-right {
-    color: color-mix(in srgb, #1977cc, transparent 60%);
+    color: color-mix(in srgb, #478e1a, transparent 60%);
     font-size: 26px;
     line-height: 0;
   }
@@ -1562,7 +1562,7 @@
   }
   
   .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-    background-color: #1977cc;
+    background-color: #478e1a;
   }
   
   @media (max-width: 767px) {
@@ -1603,7 +1603,7 @@
   
   .contact .info-item i {
     color: #ffffff;
-    background: #1977cc;
+    background: #478e1a;
     font-size: 20px;
     width: 44px;
     height: 44px;
@@ -1647,7 +1647,7 @@
   .contact .php-email-form input[type=text]:focus,
   .contact .php-email-form input[type=email]:focus,
   .contact .php-email-form textarea:focus {
-    border-color: #1977cc;
+    border-color: #478e1a;
   }
   
   .contact .php-email-form input[type=text]::placeholder,
@@ -1658,7 +1658,7 @@
   
   .contact .php-email-form button[type=submit] {
     color: #ffffff;
-    background: #1977cc;
+    background: #478e1a;
     border: 0;
     padding: 10px 36px;
     transition: 0.4s;
@@ -1666,6 +1666,6 @@
   }
   
   .contact .php-email-form button[type=submit]:hover {
-    background: color-mix(in srgb, #1977cc, transparent 20%);
+    background: color-mix(in srgb, #478e1a, transparent 20%);
   }
   

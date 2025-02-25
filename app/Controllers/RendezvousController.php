@@ -178,38 +178,6 @@ class RendezvousController extends BaseController
             return redirect()->back()->with('error', 'Rendez-vous introuvable.');
         }
     }
-
-    private function generatePDF($client, $voiture, $rendezvous)
-    {
-        $pdf = new TCPDF();
-        $pdf->AddPage();
-        $pdf->SetFont('helvetica', 'B', 16);
-        $pdf->Cell(0, 10, 'Rendez-vous Validé', 0, 1, 'C');
-        $pdf->SetFont('helvetica', '', 12);
-        $pdf->Ln(10);
-        $pdf->Cell(0, 10, 'Informations du Client:', 0, 1);
-        $pdf->Cell(0, 10, 'Nom: ' . $client['nom'] . ' ' . $client['prenom'], 0, 1);
-        $pdf->Cell(0, 10, 'Email: ' . $client['email'], 0, 1);
-        $pdf->Cell(0, 10, 'Téléphone: ' . $client['telephone'], 0, 1);
-        $pdf->Cell(0, 10, 'Adresse: ' . $client['adresse'], 0, 1);
-        $pdf->Ln(10);
-        $pdf->Cell(0, 10, 'Informations de la Voiture:', 0, 1);
-        $pdf->Cell(0, 10, 'Marque: ' . $voiture['marque'], 0, 1);
-        $pdf->Cell(0, 10, 'Modèle: ' . $voiture['modele'], 0, 1);
-        $pdf->Cell(0, 10, 'Année de Fabrication: ' . $voiture['annee_fabrication'], 0, 1);
-        $pdf->Cell(0, 10, 'Immatriculation: ' . $voiture['immatriculation'], 0, 1);
-        $pdf->Ln(10);
-        $pdf->Cell(0, 10, 'Informations du Rendez-vous:', 0, 1);
-        $pdf->Cell(0, 10, 'Date: ' . $rendezvous['date_rendez_vous'], 0, 1);
-        $pdf->Cell(0, 10, 'Heure: ' . $rendezvous['heure_rendez_vous'], 0, 1);
-        $uploadPath = WRITEPATH . 'uploads/pdfs/';
-        if (!is_dir($uploadPath)) {
-            mkdir($uploadPath, 0777, true);
-        }
-        $pdfFileName = 'Rendezvous_' . $rendezvous['id'] . '.pdf';
-        $pdf->Output($uploadPath . $pdfFileName, 'F');
-        return $pdfFileName;
-    }
     
     public function rejeter($id)
     {

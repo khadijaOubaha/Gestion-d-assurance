@@ -126,5 +126,9 @@ class ClientController extends BaseController
     public function auto()
     {
         return view('rendez_vous');
-    }
+ 
+       }
+       public function accee(){
+        return view('details_plante1');
+       }
 }

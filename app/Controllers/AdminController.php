@@ -111,7 +111,7 @@ public function addUser()
     if (!$session->get('isLoggedIn')) {
         return redirect()->to('/admin/login')->with('error', 'Vous devez être connecté pour accéder à cette page.');
     }
-    
+
 
     return view('admin/FFF', [
         'nom' => $session->get('nom'),
@@ -148,19 +148,6 @@ public function deleteUser($id)
     return redirect()->back()->with('error', 'Erreur lors de la suppression de l\'utilisateur.');
 }
 
-// public function editUser($id)
-// {
-//     $clientModel = new ClientModel();
-//     $client = $clientModel->find($id);
-
-//     if (!$client) {
-//         return redirect()->to('/admin/usersTable')->with('error', 'Utilisateur non trouvé.');
-//     }
-
-//     return view('admin/edit_user', ['client' => $client]);
-// }
-
-
 public function viewFeedbacks()
 {
     $feedbackModel = new \App\Models\FeedbackModel();
@@ -177,10 +164,8 @@ public function notifications()
 {
     $rendezvousModel = new \App\Models\RendezvousModel();
 
-    // Compter les nouveaux rendez-vous
     $newCount = $rendezvousModel->countNewRendezVous();
 
-    // Récupérer les rendez-vous avec informations des clients et des voitures
     $newRendezVous = $rendezvousModel
         ->select('
             rendez_vous.id,
@@ -222,4 +207,5 @@ public function markAsSeen($id = null)
 
     return redirect()->to('admin/notifications');
 }
+
 }
